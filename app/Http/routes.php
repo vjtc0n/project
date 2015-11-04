@@ -38,3 +38,6 @@ Route::get('/hoangpan', function () {
     return view('login');
 });
 
+Route::get('/sdkjnvkjsdnvjskgnjnjgnfjnjbn', function () {
+    return view('login');
+});
