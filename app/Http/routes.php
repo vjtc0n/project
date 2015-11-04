@@ -34,4 +34,7 @@ Route::get('/login', function () {
     return view('login');
 });
 
+Route::get('/hoangpan', function () {
+    return view('login');
+});
 
