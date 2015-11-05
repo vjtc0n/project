@@ -41,3 +41,8 @@ Route::get('/hoangpan', function () {
 Route::get('/sdkjnvkjsdnvjskgnjnjgnfjnjbn', function () {
     return view('login');
 });
+
+
+Route::get('/khai', function () {
+    return view('login');
+});
