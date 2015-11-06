@@ -47,6 +47,6 @@ Route::get('/khai', function () {
     return view('login');
 });
 
-Route::get('/nguyet-anh', function () {
-    return view('login');
+Route::get('/demo',function(){
+    echo " Thanks !!";
 });
