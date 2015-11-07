@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use View;
 use Input;
 use Validator;
+use Hash;
 use App\User;
 use Illuminate\Support\Facades\Redirect;
 
@@ -101,7 +102,7 @@ class UserController extends Controller
     //echo "Touch";     
         $credentials = array(
                 'user_input' => Input::get('user_input'),
-                'password' => Input::get('password')
+                'password'   => Input::get('password')
         );
         $rules = array(
             'user_input' => 'required',
@@ -112,15 +113,18 @@ class UserController extends Controller
         if ($validator->passes()) { //kiem tra dieu kien credentials da thoa man rule hay chua
             $check = User::check_login($credentials['user_input'],$credentials['password']);          
             // dd(Session::get('user_name'));
-            if($check){
+            //dd( $check);
+            if($check == true){
                 //$username=Auth::user()->username;
                 //$userId = $check['_id'];
 				
-				return Redirect::to('/');
+				//return Redirect::to('/');
+				return view('welcome');
 				
             }
             else{
                 return Redirect::back()->with('fail',"Tài khoản không chính xác. Đăng nhập thất bại");
+                 
             }
         }
     }

@@ -28,17 +28,20 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
     public static function check_login($user_input,$password)
     {
         //$result = User::where('username',$user_input)->where('password',$password)->first();  
-        $data = array('username'=>$user_input,'password'=>$password);
+        $data = array('username'=>$user_input,
+                      'password'=>$password);
+        //dd($password);
         $result = Auth::attempt($data);
-        if(!$result)
+        //dd($result);
+        if($result == true)
         {
-            return false;
+            return true;
         }
         else{
             //          //Luu session
 //            Session::put('user_id',$result['_id']);
 //            Session::put('user_name',$result['username']);
-            return $result;
+            return false;
         }
     }
 
