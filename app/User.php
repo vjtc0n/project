@@ -2,38 +2,44 @@
 
 namespace App;
 
-use Illuminate\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Auth\Authenticatable;
 use Illuminate\Auth\Passwords\CanResetPassword;
-use Illuminate\Foundation\Auth\Access\Authorizable;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
-use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
+use Auth;
 
-class User extends Model implements AuthenticatableContract,
-                                    AuthorizableContract,
-                                    CanResetPasswordContract
-{
-    use Authenticatable, Authorizable, CanResetPassword;
+class User extends Model implements AuthenticatableContract, CanResetPasswordContract {
 
-    /**
-     * The database table used by the model.
-     *
-     * @var string
-     */
+    use Authenticatable, CanResetPassword;
+
     protected $table = 'users';
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
-    protected $fillable = ['name', 'email', 'password'];
+    protected $hidden = array('password', 'remember_token');
 
     /**
-     * The attributes excluded from the model's JSON form.
-     *
-     * @var array
+     * A user will belong to many permissions.
      */
-    protected $hidden = ['password', 'remember_token'];
+    public function permissions()
+    {
+        return $this->belongsToMany('Permission')->withTimestamps();
+    }
+
+    public static function check_login($user_input,$password)
+    {
+        //$result = User::where('username',$user_input)->where('password',$password)->first();  
+        $data = array('username'=>$user_input,'password'=>$password);
+        $result = Auth::attempt($data);
+        if(!$result)
+        {
+            return false;
+        }
+        else{
+            //          //Luu session
+//            Session::put('user_id',$result['_id']);
+//            Session::put('user_name',$result['username']);
+            return $result;
+        }
+    }
+
 }

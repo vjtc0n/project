@@ -15,38 +15,29 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/login', function () {
-    return view('login');
-});
-
-Route::get('/login', function () {
-    return view('login');
-});
-
-Route::get('/login', function () {
-    return view('login');
-});
-
-Route::get('/login', function () {
-    return view('login');
-});
-Route::get('/login', function () {
-    return view('login');
-});
-
-Route::get('/hoangpan', function () {
-    return view('login');
-});
-
-Route::get('/sdkjnvkjsdnvjskgnjnjgnfjnjbn', function () {
-    return view('login');
-});
+Route::get('/login','UserController@getLogin');
+Route::post('/login','UserController@postLogin');
 
 
-Route::get('/khai', function () {
-    return view('login');
-});
+// Allow users with the permission "access" to see the page.
+Route::get('/test', [
+    'middleware' => ['auth', 'permissions.required'],
+    'permissions' => 'access',
+    'uses' => 'MyController@myAction'
+]);
 
-Route::get('/demo',function(){
-    echo " Thanks !!";
-});
+// Allow users with "access" OR "admin" to see the page.
+Route::get('/test', [
+    'middleware' => ['auth', 'permissions.required'],
+    'permissions' => ['access', 'admin'],
+    'uses' => 'MyController@myAction'
+]);
+
+// Allow users with "access" AND "admin" to see the page.
+Route::get('/test', [
+    'middleware' => ['auth', 'permissions.required'],
+    'permissions' => ['access', 'admin'],
+    'permissions_require_all' => true,
+    'uses' => 'MyController@myAction'
+]);
+

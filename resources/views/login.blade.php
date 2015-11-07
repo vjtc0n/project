@@ -31,7 +31,7 @@
       <div class="modal-body">
         <form id="loginform" class="form col-md-12 center-block" method="post" action="<?php echo URL::to('/login');?>">
             <div class="form-group">
-              <input name="email" type="text" class="form-control input-lg" placeholder="Email">
+              <input name="user_input" type="text" class="form-control input-lg" placeholder="Nhập tài khoản">
             </div>
             <div class="form-group">
                 <input name="password" type="password" class="form-control input-lg" placeholder="Password">
@@ -40,6 +40,9 @@
           <button class="btn btn-primary btn-lg btn-block" id="login">Log In</button>
               
         </div>
+
+        
+
         </form>
       </div>
       <div class="modal-footer">
@@ -49,6 +52,14 @@
     </div>
   </div>
 </div>
+
+        <div>
+              @if(Session::has('fail'))
+              <span>
+                  {{Session::get('fail')}}
+              </span>
+              @endif
+        </div>
 
 
 	</body>
