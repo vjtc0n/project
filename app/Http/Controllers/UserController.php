@@ -10,6 +10,7 @@ use Input;
 use Validator;
 use Hash;
 use App\User;
+use Auth;
 use Illuminate\Support\Facades\Redirect;
 
 class UserController extends Controller
@@ -95,23 +96,27 @@ class UserController extends Controller
     {
         //echo Cookie::get("api_token");
         return View::make('login');
+        // echo Hash::make('1234');
     }
 
-    public function postLogin()
+    public function postLogin(Request $request)
     {
     //echo "Touch";     
         $credentials = array(
-                'user_input' => Input::get('user_input'),
-                'password'   => Input::get('password')
+                'username' => $request->user_input,
+                'password'   => $request->password
         );
         $rules = array(
-            'user_input' => 'required',
+            'username' => 'required',
             'password' => 'required'
         );
-        
+
+        //dd($request->user_input);
+        //dd($request->password);
         $validator = Validator::make($credentials, $rules);
-        if ($validator->passes()) { //kiem tra dieu kien credentials da thoa man rule hay chua
-            $check = User::check_login($credentials['user_input'],$credentials['password']);          
+        if ($validator->passes()) { 
+
+            $check = Auth::attempt($credentials,true);          
             // dd(Session::get('user_name'));
             //dd( $check);
             if($check == true){

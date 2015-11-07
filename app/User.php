@@ -14,9 +14,10 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
     use Authenticatable, CanResetPassword;
 
     protected $table = 'users';
+    protected $fillable = array('email', 'password');
 
     protected $hidden = array('password', 'remember_token');
-
+    protected $primaryKey = "id";
     /**
      * A user will belong to many permissions.
      */
@@ -25,24 +26,6 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
         return $this->belongsToMany('Permission')->withTimestamps();
     }
 
-    public static function check_login($user_input,$password)
-    {
-        //$result = User::where('username',$user_input)->where('password',$password)->first();  
-        $data = array('username'=>$user_input,
-                      'password'=>$password);
-        //dd($password);
-        $result = Auth::attempt($data);
-        //dd($result);
-        if($result == true)
-        {
-            return true;
-        }
-        else{
-            //          //Luu session
-//            Session::put('user_id',$result['_id']);
-//            Session::put('user_name',$result['username']);
-            return false;
-        }
-    }
+   
 
 }
