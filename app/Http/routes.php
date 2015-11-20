@@ -13,12 +13,10 @@
 
 Route::get('/', function () {
     return view('welcome');
-    
 });
 
 Route::get('/login','UserController@getLogin');
 Route::post('/login','UserController@postLogin');
-
 
 // Allow users with the permission "access" to see the page.
 Route::get('/test', [
@@ -42,3 +40,7 @@ Route::get('/test', [
     'uses' => 'MyController@myAction'
 ]);
 
+// KhiemDH: xử lý các route chưa được khai báo
+Route::any('{all?}', function() {
+    return redirect('/');
+}) ->where('all', '.*');
