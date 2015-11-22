@@ -6,6 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" href="{{ url('public/favicon.ico') }}">
 
+
+    <meta name="generator" content="Bootply" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <!--[if lt IE 9]>
+      <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link rel="stylesheet" type="text/css" href="css/styles.css">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+
     <title>@yield('title')</title>
 
     <!-- Bootstrap core CSS -->
@@ -41,8 +52,27 @@
             <li><a href="#">Page 3</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-            <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+            @if (Auth::guest())
+            <li><a href="{{ url('/login') }}">Login</a></li>
+            <script>
+              $(function() {
+              $('#exampleModal').modal('show');
+              });
+            </script>
+            @else
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                {{ Auth::user()->name }}
+                <span class="caret"></span>
+              </a>
+
+
+              <ul class="dropdown-menu" role="menu">
+                <li><a role="menuitem" href="{{ url('/logout') }}">Logout</a></li>
+
+              </ul>
+            </li>
+            @endif
           </ul>
         </div>
       </div>
@@ -57,6 +87,10 @@
     <script src="{{ url('public/js/bootstrap.min.js') }}"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="{{ url('public/js/ie10-viewport-bug-workaround.js') }}"></script>
+    <!-- Scripts -->
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.4/js/bootstrap.min.js"></script>
+
   </body>
 
 </html> 

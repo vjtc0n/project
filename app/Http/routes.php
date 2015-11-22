@@ -12,11 +12,13 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('base');
 });
 
 Route::get('/login','UserController@getLogin');
 Route::post('/login','UserController@postLogin');
+
+Route::get('/logout','UserController@getLogout');
 
 // Allow users with the permission "access" to see the page.
 Route::get('/test', [

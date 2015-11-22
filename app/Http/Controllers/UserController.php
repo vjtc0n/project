@@ -124,13 +124,24 @@ class UserController extends Controller
                 //$userId = $check['_id'];
 				
 				//return Redirect::to('/');
-				return view('welcome');
+				return Redirect::back();
 				
             }
             else{
+                
                 return Redirect::back()->with('fail',"Tài khoản không chính xác. Đăng nhập thất bại");
-                 
+               
+                
             }
         }
+    }
+
+
+     public function getLogout()
+    {
+        //echo Cookie::get("api_token");
+        Auth::logout();
+        return View::make('base');
+        // echo Hash::make('1234');
     }
 }

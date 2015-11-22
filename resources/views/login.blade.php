@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!--<!DOCTYPE html>
 <html lang="en">
 	<head>
 		<meta http-equiv="content-type" content="text/html; charset=UTF-8">
@@ -9,27 +9,32 @@
 		<link href="css/bootstrap.min.css" rel="stylesheet">
 		<!--[if lt IE 9]>
 			<script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
-		<![endif]-->
+		<![endif]
     <link rel="stylesheet" type="text/css" href="css/styles.css">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
 	</head>
 	<body>
-		
+	 -->
 
+@extends('base')
 
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" >Login</button>
+@section('content')
 
+<!--<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" >Login</button>-->
+        
 
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
   <div class="modal-dialog" >
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+        </button>
         <h4 class="modal-title" id="exampleModalLabel">Login</h4>
       </div>
       <div class="modal-body">
         <form id="loginform" class="form col-md-12 center-block" method="post"  action="<?php echo URL::to('/login');?>">
+
             <div class="form-group">
               <input name="user_input" type="text" class="form-control input-lg" placeholder="Nhập tài khoản">
             </div>
@@ -53,15 +58,19 @@
   </div>
 </div>
 
+
         <div>
-              @if(Session::has('fail'))
-              <span>
-                  {{Session::get('fail')}}
-              </span>
+              @if ($alert = Session::get('fail'))
+                <div class="alert alert-warning">
+                  {{ $alert }}
+                </div>
               @endif
         </div>
 
+@endsection
 
-	</body>
+
+<!--	</body>
 
 	</html>
+  -->
