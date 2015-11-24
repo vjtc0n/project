@@ -42,14 +42,17 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">WebSiteName</a>
+          <a class="navbar-brand" href="#">Hệ Thống Tuyển Sinh Đại Học</a>
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Home</a></li>
-            <li><a href="#">Page 1</a></li>
-            <li><a href="#">Page 2</a></li>
-            <li><a href="#">Page 3</a></li>
+            <li class="active"><a href="#">Trang Chủ</a></li>
+            <li><a href="#">Tra Cứu Điểm Thi</a></li>
+            <li><a href="#">Admin</a></li>
+            <li><a href="#">Quản Lý Nhân Viên Cụm</a></li>
+            <li><a href="#">Nhân Viên Cụm</a></li>
+            <li><a href="#">Nhân Viên Trường Đại Học</a></li>
+            <li><a href="#">Tuyển Sinh Đại Học</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
             @if (Auth::guest())

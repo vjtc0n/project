@@ -211,4 +211,3 @@ Route::get('/test', [
 ]); 
 */
 //
-Route::auhjbeujhbujbuhjrbeuwrbwe;

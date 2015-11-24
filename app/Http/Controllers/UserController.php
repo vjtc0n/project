@@ -124,7 +124,7 @@ class UserController extends Controller
                 //$userId = $check['_id'];
 				
 				//return Redirect::to('/');
-				return Redirect::back();
+				return Redirect::to('/');
 				
             }
             else{
@@ -141,7 +141,7 @@ class UserController extends Controller
     {
         //echo Cookie::get("api_token");
         Auth::logout();
-        return View::make('base');
+        return Redirect::to('/');
         // echo Hash::make('1234');
     }
 }
