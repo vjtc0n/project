@@ -1,4 +1,7 @@
 @extends('base')
+@section('title')
+  Tuyển sinh đại học
+@stop
 @section('content')
 <div class="content-left">
   <div class="panel panel-default">

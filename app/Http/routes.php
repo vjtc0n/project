@@ -26,6 +26,9 @@ Route::post('/', [
 Route::get('tuyen-sinh',function(){
     return view('home/regi');
 });
+Route::get('xem-dt',function(){
+    return view('home/xemdt');
+});
 
 Route::get('/login','UserController@getLogin');
 Route::post('/login','UserController@postLogin');

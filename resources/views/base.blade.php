@@ -17,7 +17,10 @@
     <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
 
-    <title>@yield('title')</title>
+    <title>@section('title')
+          Trang chủ
+      @show
+    </title>
 
     <!-- Bootstrap core CSS -->
     <link href="{{ url('public/css/bootstrap.min.css') }}" rel="stylesheet">
@@ -31,12 +34,7 @@
       <script src="{{ url('public/js/respond.min.js') }}"></script>
     <![endif]-->
     <style type="text/css">
-        #wrapper{margin: 20px 20px 40px 20px;}
-        #header {padding-left: 100px;padding-right: 100px;}
-        .content    {width:985px;min-height:500px;margin-left: 120px;}
-        .content-left {float:left;width:235px;min-height: 500px;padding-bottom: 5px;}
-        .content-right  {float:right;width:730px;min-height: 500px;background: #b200ff;}
-        .regi {text-align: center;}
+
     </style>
   </head>
 
@@ -51,13 +49,19 @@
             
             <div>
                 <ul class="nav navbar-nav">
-                    <li><a href="#">Tra Cứu Điểm Thi</a></li>
+                    <li><a href="xem-dt">Tra Cứu Điểm Thi</a></li>
                     <li @if(Request::url() === 'your url here')// code
-@endif><a href="tuyen-sinh"> Tuyển Sinh Đại Học</a></li>
-                    <li><a href="">Admin</a></li>
-                    <!-- <li><a href="#">Quản Lý Nhân Viên Cụm</a></li> -->
-                    <li><a href="#">Nhân Viên Cụm</a></li>
-                    <li><a href="#">Nhân Viên Trường Đại Học</a></li>          
+                        @endif><a href="tuyen-sinh"> Tuyển Sinh Đại Học</a></li>
+                     <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#">Action</a></li>
+            <li><a href="#">Another action</a></li>
+            <li><a href="#">Something else here</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#">Separated link</a></li>
+          </ul>
+        </li>    
                 </ul>
                  <ul class="nav navbar-nav navbar-right">
                   @if (Auth::guest())
@@ -82,7 +86,9 @@
     </div>
     </div>
     <div class='content'>
-    @yield('content')
+    @section('content')
+
+    @show
     </div>
 		
     <!-- Bootstrap core JavaScript

@@ -1,4 +1,7 @@
-.content    {width:970px;min-height:500px;margin-left: 136px;}
-      .content-left {float:left;width:235px;min-height: 500px;padding-bottom: 5px;}
-      .content-right  {float:right;width:730px;min-height: 500px;background: #b200ff;}
-      .regi {text-align: center;}
+        #wrapper{margin: 20px 20px 40px 20px;}
+        #header {padding-left: 100px;padding-right: 100px;}
+        .content    {width:985px;min-height:500px;margin-left: 120px;}
+        .content-left {float:left;width:235px;min-height: 500px;padding-bottom: 5px;}
+        .content-right  {float:right;width:730px;min-height: 500px;background: #b200ff;}
+        .regi {text-align: center;}
+        .bttimkiem {margin-top: 10px;}
