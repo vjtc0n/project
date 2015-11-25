@@ -42,10 +42,16 @@ Route::group(['prefix'=>'admin'],function()
         return view('');
     });
 
+    Route::get('/taoTaiKhoanQuanLyNhanVienCum', [
+        'middleware' => ['auth', 'permissions.required'],
+        'permissions' => ['admin'],
+        'uses' => 'AdminController@getTaoTaiKhoanQuanLyNhanVienCum'
+    ]);
+
     Route::post('/taoTaiKhoanQuanLyNhanVienCum', [
         'middleware' => ['auth', 'permissions.required'],
         'permissions' => ['admin'],
-        'uses' => 'AdminController@taoTaiKhoanNhanVienCum'
+        'uses' => 'AdminController@postTaoTaiKhoanQuanLyNhanVienCum'
     ]);
 
     Route::get('/congKhaiDiem', [
