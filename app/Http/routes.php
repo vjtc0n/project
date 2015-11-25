@@ -198,6 +198,25 @@ Route::group(['prefix'=>'search'],function()
 });
 
 
+
+Route::group(['prefix'=>'tra-cuu'],function()
+{
+    Route::get('/thi-sinh', [    
+    'uses' => 'SearchController@getStudentInformation'
+    ]);
+
+});
+
+
+
+Route::get('/abc','TestChartController@lineChart');
+
+Route::get('/chart',function(){
+    return view('test-chart');
+});
+
+
+
 Route::any('{all?}', function() {
     return redirect('/');
 }) ->where('all', '.*');
