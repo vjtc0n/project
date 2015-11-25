@@ -1,11 +1,5 @@
-@extends('home.home')
-@section('navbar')
-  <li ><a href="/project/home">Trang chủ</a></li>
-  <li ><a href="/project/score">Điểm Thi</a></li>
-  <li class="active"><a href="/project/register">Đăng ký tuyển sinh</a></li>
-  <li><a href="#">Hỗ trợ tuyển sinh</a></li>
-@stop
-@section('noidung')
+@extends('base')
+@section('content')
 <div class="content-left">
   <div class="panel panel-default">
       <div class="panel-heading">THÔNG TIN THÍ SINH</div>

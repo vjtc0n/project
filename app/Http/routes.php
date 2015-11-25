@@ -15,11 +15,17 @@
 Route::get('/', function () {
     return view('base');
 });
+Route::get('url/full',function () { 
+ return URL::full(); 
+});
 
 // Xem bảng xếp hạng các trường DH theo điểm thấp nhất của các khoa trong trường
 Route::post('/', [    
 'uses' => 'SearchController@getUniversityChart'
 ]);
+Route::get('tuyen-sinh',function(){
+    return view('home/regi');
+});
 
 Route::get('/login','UserController@getLogin');
 Route::post('/login','UserController@postLogin');
