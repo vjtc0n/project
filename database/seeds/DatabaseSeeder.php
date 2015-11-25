@@ -14,8 +14,21 @@ class DatabaseSeeder extends Seeder
     {
         Model::unguard();
 
+        $this->call(PermissionsTableSeeder::class);
         // $this->call(UserTableSeeder::class);
 
         Model::reguard();
+    }
+}
+
+class PermissionsTableSeeder extends Seeder {
+    public function run() {
+        DB::table('permissions')->insert([
+            ['slug' => 'admin', 'name' => 'Admin', 'description' => ''],
+            ['slug' => 'clusterstaffmanager', 'name' => 'Cluster Staff Manager', 'description' => ''],
+            ['slug' => 'clusterstaff', 'name' => 'Cluster Staff', 'description' => ''],
+            ['slug' => 'universitystaff', 'name' => 'University Staff', 'description' => ''],
+            ['slug' => 'student', 'name' => 'Student', 'description' => '']
+        ]);
     }
 }
