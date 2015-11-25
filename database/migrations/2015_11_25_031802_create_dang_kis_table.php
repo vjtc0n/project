@@ -14,7 +14,7 @@ class CreateDangKisTable extends Migration
     {
         Schema::create('dang_kis', function (Blueprint $table) {
             $table->increments('id');
-             $table->integer('thisinh_id')->unsigned();
+            $table->integer('thisinh_id')->unsigned();
             $table->foreign('thisinh_id')->references('id')->on('thi_sinhs')->onDelete('cascade');
             $table->integer('nganh_id')->unsigned();
             $table->foreign('nganh_id')->references('id')->on('nganhs')->onDelete('cascade');
