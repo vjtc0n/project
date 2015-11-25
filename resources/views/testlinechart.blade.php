@@ -3,6 +3,7 @@
 
 	<head>
 		<head>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0/handlebars.js"></script>
 		<script type="text/javascript" src="https://www.google.com/jsapi"></script>
     	<script type="text/javascript">
     	// Load the Visualization API and the piechart package.
@@ -15,29 +16,25 @@
       	
 		function drawLineChart() {
 			//console.log(temp1);
-      		var data = new google.visualization.DataTable();
+      		var datachart = new google.visualization.DataTable();
      		data.addColumn('date', 'X');
     		data.addColumn('number', 'Thí sinh');
-      		data.addRows([
-      			[new Date(2014, 10, 5), {!!$data[0]!!}],
-		        [new Date(2014, 10, 6), {!!$data[1]!!}],
-		        [new Date(2014, 10, 7), {!!$data[2]!!}]
-		        ]);
-      		// $.ajax({
-      		// 		url: "{url('')}",
-      		// 		data: {},
-      		// 		cache: false,
-      		// 		success: function(data){
-      		// 			data.addRows([]);
-      		// 		}
-      		// 	});
-      		// 		echo "[new Date(2014, 10, 5), ],";
-      		// 		echo "[new Date(2014, 10, 6), ],";
-      		// 		echo "[new Date(2014, 10, 7), ]";
-		      //   // [new Date(2014, 10, 5), 20],
-		      //   // [new Date(2014, 10, 6), 10],
-		      //   // [new Date(2014, 10, 7), 10]
-		    
+
+    		$.ajax({
+    			url: "{{url('http://localhost/project/public/api/data')}}",
+    			type : "GET",
+    			data : $data,
+    			success:function(data){
+    				foreach (data as number)
+    				{
+    					console.log(number);
+    				}
+    					
+    			}
+    		});
+    		
+    		
+    		
 
 		     var options = {
 		        hAxis: {
@@ -50,7 +47,7 @@
 
 		      var chart = new google.visualization.LineChart(document.getElementById('chart_line'));
 
-		      chart.draw(data, options);
+		      chart.draw(datachart, options);
 		    }
 
       	</script>
@@ -59,9 +56,9 @@
 	</head>
 
 	<body>
-
+		
 		<div id="chart_line" style="width: 900px; height: 500px"></div>
-		{!!$data[0]!!}
+		
 	</body>
 
 
