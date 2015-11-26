@@ -67,39 +67,49 @@ Route::group(['prefix'=>'cluster-staff-manager'],function()
 
 });
 
-Route::group(['prefix'=>'cluster-staff'],function()
+Route::group(['prefix'=>'admin'],function()
 {
-    Route::get('/',function(){
-        return view('');
+    //Route::get('/',function(){
+        //return view('');
+    //});
+    
+     Route::group(['prefix' => 'point'],function(){
+        //Route::get('list',['as' => 'admin.cate.list','uses' => 'CateController@getList']);
+        Route::get('add',['as' => 'admin.point.getAdd','uses' => 'PointController@getAdd']);
+        Route::post('add',['as' => 'admin.point.postAdd','uses' => 'PointController@postAdd']);
+        //Route::get('delete/{id}',['as' => 'admin.cate.getDelete','uses' => 'CateController@getDelete']);
+        //Route::get('edit/{id}',['as' => 'admin.cate.getEdit','uses' => 'CateController@getEdit']);
+        //Route::post('edit/{id}',['as' => 'admin.cate.postEdit','uses' => 'CateController@postEdit']);
+        
     });
 
 
     Route::post('/quan-ly-thong-tin-thi-sinh/add', [
-        'middleware' => ['auth', 'permissions.required'],
+        //'middleware' => ['auth', 'permissions.required'],
         'permissions' => ['clusterstaff'],
         'uses' => 'ClusterStaffController@addStudent'
     ]);
 
     Route::post('/quan-ly-thong-tin-thi-sinh/edit', [
-        'middleware' => ['auth', 'permissions.required'],
+        //'middleware' => ['auth', 'permissions.required'],
         'permissions' => [ 'clusterstaff'],
         'uses' => 'ClusterStaffController@editStudent'
     ]);
 
     Route::get('/quan-ly-thong-tin-thi-sinh/delete', [
-        'middleware' => ['auth', 'permissions.required'],
+        //'middleware' => ['auth', 'permissions.required'],
         'permissions' => [ 'clusterstaff'],
         'uses' => 'ClusterStaffController@deleteStudent'
     ]);
 
     Route::post('/quan-ly-thong-tin-diem-thi/add', [
-        'middleware' => ['auth', 'permissions.required'],
+        //'middleware' => ['auth', 'permissions.required'],
         'permissions' => [ 'clusterstaff'],
         'uses' => 'ClusterStaffController@addScore'
     ]);
 
     Route::post('/quan-ly-thong-tin-diem-thi/edit', [
-        'middleware' => ['auth', 'permissions.required'],
+        //'middleware' => ['auth', 'permissions.required'],
         'permissions' => [ 'clusterstaff'],
         'uses' => 'ClusterStaffController@editScore'
     ]);
@@ -183,9 +193,9 @@ Route::group(['prefix'=>'search'],function()
 });
 
 
-Route::any('{all?}', function() {
-    return redirect('/');
-}) ->where('all', '.*');
+//Route::any('{all?}', function() {
+   // return redirect('/');
+//}) ->where('all', '.*');
 
 /*
 // Allow users with the permission "access" to see the page.
@@ -211,3 +221,7 @@ Route::get('/test', [
 ]); 
 */
 //
+
+//Route::get('test',function(){
+  // return view('admin.point.add'); 
+//});
