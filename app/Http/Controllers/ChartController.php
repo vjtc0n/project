@@ -13,7 +13,7 @@ use App\User;
 use Auth;
 use Illuminate\Support\Facades\Redirect;
 
-class TestChartController extends Controller
+class ChartController extends Controller
 {
 
 	public function lineChart()
@@ -32,11 +32,11 @@ class TestChartController extends Controller
 
 		$year = array(2015);
 		$month = array(8);
-		return response()->json(array('data'=> $data,
-									  'day'=> $day)) 
-						 ->with('year',$year)
-						 ->with('month',$month);
-									      
+		return response()->json(array('numberofstudent'=> $data,
+									  'day'=> $day,
+									  'year'=> $year,
+									  'month' => $month )) ;
+						       
 
 	}
 
@@ -50,22 +50,11 @@ class TestChartController extends Controller
 			$i++ ;
 		}
 		
-		return View::make('test-chart')->with('data', $data);
+		return View::make('column-chart')->with('data', $data);
 	}
 
 }
 
 			/*
-    		int i = 0;
-    		while(i<20)
-    		{	
-    			data.addRows([new Date(	{!!$year[0]!!},
-    								   	{!!$month[0]!!},
-    								   	{!!$day[i]!!}
-    								   ),
-    								   {!!$data[i]!!}
-    						 ]);
-
-    			i++;
-    		}
+    		
     		*/

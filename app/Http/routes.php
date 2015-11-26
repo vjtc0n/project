@@ -211,12 +211,12 @@ Route::group(['prefix'=>'tra-cuu'],function()
 
 
 //Test Chart
-Route::get('/api/data','TestChartController@lineChart');
+Route::get('/api/data','ChartController@lineChart');
 Route::get('/line-chart', function(){
-    return view('testlinechart');
+    return view('line-chart');
 });
 
-Route::get('/column-chart','TestChartController@columnChart');
+Route::get('/column-chart','ChartController@columnChart');
 
 
 
