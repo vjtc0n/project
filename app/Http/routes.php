@@ -16,7 +16,7 @@ Route::get('/', function () {
     return view('base');
 });
 Route::get('url/full',function () { 
- return URL::full(); 
+    return URL::full(); 
 });
 
 // Xem bảng xếp hạng các trường DH theo điểm thấp nhất của các khoa trong trường
@@ -30,37 +30,36 @@ Route::get('xem-dt',function(){
     return view('home/xemdt');
 });
 
-Route::get('/login','UserController@getLogin');
-Route::post('/login','UserController@postLogin');
-Route::get('/logout','UserController@getLogout');
+Route::get('login','UserController@getLogin');
+Route::post('login','UserController@postLogin');
+Route::get('logout','UserController@getLogout');
 
 // Công việc của Admin
-
 Route::group(['prefix'=>'admin'],function()
 {
     Route::get('/',function(){
         return view('');
     });
 
-    Route::get('/taoTaiKhoanQuanLyNhanVienCum', [
+    Route::get('taoTaiKhoanQuanLyNhanVienCum', [
         'middleware' => ['auth', 'permissions.required'],
         'permissions' => ['admin'],
         'uses' => 'AdminController@getTaoTaiKhoanQuanLyNhanVienCum'
     ]);
 
-    Route::post('/taoTaiKhoanQuanLyNhanVienCum', [
+    Route::post('taoTaiKhoanQuanLyNhanVienCum', [
         'middleware' => ['auth', 'permissions.required'],
         'permissions' => ['admin'],
         'uses' => 'AdminController@postTaoTaiKhoanQuanLyNhanVienCum'
     ]);
 
-    Route::get('/congKhaiDiem', [
+    Route::get('congKhaiDiem', [
         'middleware' => ['auth', 'permissions.required'],
         'permissions' => ['admin'],
         'uses' => 'AdminController@congKhaiDiem'
     ]);
 
-    Route::get('/thietLapNguyenVongTruong', [
+    Route::get('thietLapNguyenVongTruong', [
         'middleware' => ['auth', 'permissions.required'],
         'permissions' => ['admin'],
         'uses' => 'AdminController@thietLapNguyenVongTruong'
@@ -74,13 +73,13 @@ Route::group(['prefix'=>'cluster-staff-manager'],function()
         return view('');
     });
 
-    Route::get('/taoTaiKhoanNhanVienCum', [
+    Route::get('taoTaiKhoanNhanVienCum', [
         'middleware' => ['auth', 'permissions.required'],
         'permissions' => ['clusterstaffmanager'],
         'uses' => 'ClusterStaffManagerController@getTaoTaiKhoanNhanVienCum'
     ]);
 
-    Route::post('/taoTaiKhoanNhanVienCum', [
+    Route::post('taoTaiKhoanNhanVienCum', [
         'middleware' => ['auth', 'permissions.required'],
         'permissions' => ['clusterstaffmanager'],
         'uses' => 'ClusterStaffManagerController@postTaoTaiKhoanNhanVienCum'
@@ -93,55 +92,44 @@ Route::group(['prefix'=>'cluster-staff'],function()
     Route::get('/',function(){
         return view('');
     });
+    Route::group(['prefix' => 'quan-ly-thong-tin-thi-sinh'], function() {
+        Route::post('add', [
+            'middleware' => ['auth', 'permissions.required'],
+            'permissions' => ['clusterstaff'],
+            'uses' => 'ClusterStaffController@addStudent'
+        ]);
 
+        Route::post('edit', [
+            'middleware' => ['auth', 'permissions.required'],
+            'permissions' => [ 'clusterstaff'],
+            'uses' => 'ClusterStaffController@editStudent'
+        ]);
 
-    Route::post('/quan-ly-thong-tin-thi-sinh/add', [
-        'middleware' => ['auth', 'permissions.required'],
-        'permissions' => ['clusterstaff'],
-        'uses' => 'ClusterStaffController@addStudent'
-    ]);
+        Route::get('delete', [
+            'middleware' => ['auth', 'permissions.required'],
+            'permissions' => [ 'clusterstaff'],
+            'uses' => 'ClusterStaffController@deleteStudent'
+        ]);
+    });
 
-    Route::post('/quan-ly-thong-tin-thi-sinh/edit', [
-        'middleware' => ['auth', 'permissions.required'],
-        'permissions' => [ 'clusterstaff'],
-        'uses' => 'ClusterStaffController@editStudent'
-    ]);
+    Route::group(['prefix' => 'quan-ly-thong-tin-diem-thi'], function() {
+        Route::post('add', [
+            'middleware' => ['auth', 'permissions.required'],
+            'permissions' => [ 'clusterstaff'],
+            'uses' => 'ClusterStaffController@addScore'
+        ]);
 
-    Route::get('/quan-ly-thong-tin-thi-sinh/delete', [
-        'middleware' => ['auth', 'permissions.required'],
-        'permissions' => [ 'clusterstaff'],
-        'uses' => 'ClusterStaffController@deleteStudent'
-    ]);
-
-    Route::post('/quan-ly-thong-tin-diem-thi/add', [
-        'middleware' => ['auth', 'permissions.required'],
-        'permissions' => [ 'clusterstaff'],
-        'uses' => 'ClusterStaffController@addScore'
-    ]);
-
-    Route::post('/quan-ly-thong-tin-diem-thi/edit', [
-        'middleware' => ['auth', 'permissions.required'],
-        'permissions' => [ 'clusterstaff'],
-        'uses' => 'ClusterStaffController@editScore'
-    ]);
-
+        Route::post('edit', [
+            'middleware' => ['auth', 'permissions.required'],
+            'permissions' => [ 'clusterstaff'],
+            'uses' => 'ClusterStaffController@editScore'
+        ]);
+    });
 });
 
 
 // Công việc của nhân viên trường
-
-Route::get('/university-register',function(){
-    return view('');
-});
-Route::post('/university-register', [
-    'uses' => 'UserController@checkCode'
-]);
-
-Route::get('/university-register/register', function () {
-    return view('');
-});
-
-Route::post('/university-register/register', [
+Route::post('university-register/register', [
     'middleware' => ['auth', 'permissions.required'],
     'permissions' => ['universitystaff'],
     'uses' => 'UserController@addUniversity'
@@ -154,25 +142,25 @@ Route::group(['prefix'=>'university-staff'],function()
         return view('');
     });
 
-    Route::post('/them-khoa', [
+    Route::post('them-khoa', [
         'middleware' => ['auth', 'permissions.required'],
         'permissions' => ['universitystaff'],
         'uses' => 'UniversityStaffController@addMajor'
     ]);
 
-    Route::post('/sua-khoa', [
+    Route::post('sua-khoa', [
         'middleware' => ['auth', 'permissions.required'],
         'permissions' => ['universitystaff'],
         'uses' => 'UniversityStaffController@editMajor'
     ]);
 
-    Route::get('/xoa-khoa', [
+    Route::get('xoa-khoa', [
         'middleware' => ['auth', 'permissions.required'],
         'permissions' => ['universitystaff'],
         'uses' => 'UniversityStaffController@deleteMajor'
     ]);
 
-    Route::get('/diem', [
+    Route::get('diem', [
         'middleware' => ['auth', 'permissions.required'],
         'permissions' => ['universitystaff'],
         'uses' => 'UniversityStaffController@setScore'
@@ -181,40 +169,24 @@ Route::group(['prefix'=>'university-staff'],function()
 
 
 // Công việc của thí sinh
-Route::post('/nop-ho-so', [
+Route::post('nop-ho-so', [
     'middleware' => ['auth', 'permissions.required'],
     'permissions' => ['student'],
     'uses' => 'StudentController@submit'
 ]);
 
 
-Route::post('/rut-ho-so', [
+Route::post('rut-ho-so', [
     'middleware' => ['auth', 'permissions.required'],
     'permissions' => ['student'],
     'uses' => 'StudentController@withdraw'
 ]);
 
 // Xem điểm các thí sinh
-Route::group(['prefix'=>'search'],function()
-{
-    Route::get('/thi-sinh', [    
-    'uses' => 'SearchController@getStudentInformation'
-    ]);
-
-});
-
-
-
 Route::group(['prefix'=>'tra-cuu'],function()
 {
-    Route::get('/thi-sinh', [    
-    'uses' => 'SearchController@getStudentInformation'
-    ]);
-
+    Route::get('thi-sinh', ['uses' => 'SearchController@getStudentInformation']);
 });
-
-
-
 
 //Test Chart
 Route::get('/api/data','ChartController@lineChart');
@@ -223,8 +195,6 @@ Route::get('/line-chart', function(){
 });
 
 Route::get('/column-chart','ChartController@columnChart');
-
-
 
 Route::any('{all?}', function() {
     return redirect('/');
