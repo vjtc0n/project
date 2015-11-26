@@ -14,7 +14,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
     use Authenticatable, CanResetPassword;
 
     protected $table = 'users';
-    protected $fillable = array('email', 'password');
+    protected $fillable = array('username', 'password', 'name');
 
     protected $hidden = array('password', 'remember_token');
     protected $primaryKey = "id";
@@ -23,7 +23,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
      */
     public function permissions()
     {
-        return $this->belongsToMany('Permission')->withTimestamps();
+        return $this->belongsToMany('App\Permission')->withTimestamps();
     }
 
    

@@ -15,11 +15,20 @@
 Route::get('/', function () {
     return view('base');
 });
+Route::get('url/full',function () { 
+ return URL::full(); 
+});
 
 // Xem bảng xếp hạng các trường DH theo điểm thấp nhất của các khoa trong trường
 Route::post('/', [    
 'uses' => 'SearchController@getUniversityChart'
 ]);
+Route::get('tuyen-sinh',function(){
+    return view('home/regi');
+});
+Route::get('xem-dt',function(){
+    return view('home/xemdt');
+});
 
 Route::get('/login','UserController@getLogin');
 Route::post('/login','UserController@postLogin');
@@ -33,10 +42,16 @@ Route::group(['prefix'=>'admin'],function()
         return view('');
     });
 
+    Route::get('/taoTaiKhoanQuanLyNhanVienCum', [
+        'middleware' => ['auth', 'permissions.required'],
+        'permissions' => ['admin'],
+        'uses' => 'AdminController@getTaoTaiKhoanQuanLyNhanVienCum'
+    ]);
+
     Route::post('/taoTaiKhoanQuanLyNhanVienCum', [
         'middleware' => ['auth', 'permissions.required'],
         'permissions' => ['admin'],
-        'uses' => 'AdminController@taoTaiKhoanNhanVienCum'
+        'uses' => 'AdminController@postTaoTaiKhoanQuanLyNhanVienCum'
     ]);
 
     Route::get('/congKhaiDiem', [
@@ -193,9 +208,37 @@ Route::group(['prefix'=>'search'],function()
 });
 
 
+<<<<<<< HEAD
 //Route::any('{all?}', function() {
    // return redirect('/');
 //}) ->where('all', '.*');
+=======
+
+Route::group(['prefix'=>'tra-cuu'],function()
+{
+    Route::get('/thi-sinh', [    
+    'uses' => 'SearchController@getStudentInformation'
+    ]);
+
+});
+
+
+
+
+//Test Chart
+Route::get('/api/data','TestChartController@lineChart');
+Route::get('/line-chart', function(){
+    return view('testlinechart');
+});
+
+Route::get('/column-chart','TestChartController@columnChart');
+
+
+
+Route::any('{all?}', function() {
+    return redirect('/');
+}) ->where('all', '.*');
+>>>>>>> origin/master
 
 /*
 // Allow users with the permission "access" to see the page.

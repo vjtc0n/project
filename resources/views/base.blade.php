@@ -17,7 +17,10 @@
     <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
 
-    <title>@yield('title')</title>
+    <title>@section('title')
+          Trang chủ
+      @show
+    </title>
 
     <!-- Bootstrap core CSS -->
     <link href="{{ url('public/css/bootstrap.min.css') }}" rel="stylesheet">
@@ -30,55 +33,63 @@
       <script src="{{ url('public/js/html5shiv.min.js') }}"></script>
       <script src="{{ url('public/js/respond.min.js') }}"></script>
     <![endif]-->
+    <style type="text/css">
+
+    </style>
   </head>
 
   <body>
-
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-      <div class="container-fluid">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="#">Hệ Thống Tuyển Sinh Đại Học</a>
-        </div>
-        <div class="collapse navbar-collapse" id="myNavbar">
-          <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Trang Chủ</a></li>
-            <li><a href="#">Tra Cứu Điểm Thi</a></li>
-            <li><a href="#">Admin</a></li>
-            <li><a href="#">Quản Lý Nhân Viên Cụm</a></li>
-            <li><a href="#">Nhân Viên Cụm</a></li>
-            <li><a href="#">Nhân Viên Trường Đại Học</a></li>
-            <li><a href="#">Tuyển Sinh Đại Học</a></li>
-          </ul>
-          <ul class="nav navbar-nav navbar-right">
-            @if (Auth::guest())
-            <li><a href="{{ url('/login') }}">Login</a></li>
+    <div id ="wrapper">
+    <div id ="header">
+      <nav class="navbar navbar-default">
+          <div class="container-fluid abc">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">PROJECT-III</a>
+            </div>
             
-            <script>
-              $(function() {
-              $('#exampleModal').modal('show');
-              });
-            </script>
-            @else
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                {{ Auth::user()->name }}
+            <div>
+                <ul class="nav navbar-nav">
+                    <li><a href="xem-dt">Tra Cứu Điểm Thi</a></li>
+                    <li @if(Request::url() === 'your url here')// code
+                        @endif><a href="tuyen-sinh"> Tuyển Sinh Đại Học</a></li>
+                     <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#">Action</a></li>
+            <li><a href="#">Another action</a></li>
+            <li><a href="#">Something else here</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#">Separated link</a></li>
+          </ul>
+        </li>    
+                </ul>
+                 <ul class="nav navbar-nav navbar-right">
+                  @if (Auth::guest())
+                    <li><a href="{{ url('/login') }}"><span class="glyphicon glyphicon-log-in"></span>&nbsp;Đăng Nhập</a></li>
+            
+                    <script>
+                      $(function() {
+                        $('#exampleModal').modal('show');
+                      });
+                    </script>
+                    @else
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                          {{ Auth::user()->name }}
                 
-              </a></li>
-              <li><a href="{{ url('/logout') }}">Logout</a></li>
-
-            
+                      </a></li>
+                    <li><a href="{{ url('/logout') }}">Logout</a></li>     
             @endif
-          </ul>
-        </div>
-      </div>
-    </nav>
+            </div>
+          </div>
+      </nav>
+    </div>
+    </div>
+    <div class='content'>
+    @section('content')
 
-    @yield('content')
+    @show
+    </div>
 		
     <!-- Bootstrap core JavaScript
     ================================================== -->
