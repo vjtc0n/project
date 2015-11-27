@@ -21,14 +21,15 @@ Route::get('url/full',function () {
 
 // Xem bảng xếp hạng các trường DH theo điểm thấp nhất của các khoa trong trường
 Route::post('/', [    
-'uses' => 'SearchController@getUniversityChart'
+    'uses' => 'SearchController@getUniversityChart'
 ]);
-Route::get('tuyen-sinh',function(){
-    return view('home/regi');
-});
+
+Route::get('tuyen-sinh', 'StudentController@getTuyenSinh')
+
 Route::get('xem-dt',function(){
     return view('home/xemdt');
 });
+
 Route::post('tim-truong', ['as' => 'tim-truong', 'uses' => 'StudentController@postTimTruong']);
 
 Route::get('/login','UserController@getLogin');
@@ -36,7 +37,6 @@ Route::post('/login','UserController@postLogin');
 Route::get('/logout','UserController@getLogout');
 
 // Công việc của Admin
-
 Route::group(['prefix'=>'admin'],function()
 {
     Route::get('/',function(){
@@ -53,18 +53,6 @@ Route::group(['prefix'=>'admin'],function()
         'middleware' => ['auth', 'permissions.required'],
         'permissions' => ['admin'],
         'uses' => 'AdminController@postTaoTaiKhoanQuanLyNhanVienCum'
-    ]);
-
-    Route::get('/congKhaiDiem', [
-        'middleware' => ['auth', 'permissions.required'],
-        'permissions' => ['admin'],
-        'uses' => 'AdminController@congKhaiDiem'
-    ]);
-
-    Route::get('/thietLapNguyenVongTruong', [
-        'middleware' => ['auth', 'permissions.required'],
-        'permissions' => ['admin'],
-        'uses' => 'AdminController@thietLapNguyenVongTruong'
     ]);
 });
 
@@ -97,7 +85,7 @@ Route::group(['prefix'=>'cluster-staff'],function()
         //Route::get('edit/{id}',['as' => 'admin.cate.getEdit','uses' => 'CateController@getEdit']);
         //Route::post('edit/{id}',['as' => 'admin.cate.postEdit','uses' => 'CateController@postEdit']);
         
-    });
+    //});
 
 
     Route::post('/quan-ly-thong-tin-thi-sinh/add', [
@@ -134,10 +122,6 @@ Route::group(['prefix'=>'cluster-staff'],function()
 
 
 // Công việc của nhân viên trường
-
-
-
-
 Route::group(['prefix'=>'university-staff'],function()
 {
     Route::get('/',function(){
@@ -177,7 +161,6 @@ Route::post('/nop-ho-so', [
     'uses' => 'StudentController@submit'
 ]);
 
-
 Route::post('/rut-ho-so', [
     'middleware' => ['auth', 'permissions.required'],
     'permissions' => ['student'],
@@ -186,14 +169,6 @@ Route::post('/rut-ho-so', [
 
 // Xem điểm các thí sinh
 
-
-
-//<<<<<<< HEAD
-Route::any('{all?}', function() {
-    return redirect('/');
-}) ->where('all', '.*');
-//=======
-
 Route::group(['prefix'=>'tra-cuu'],function()
 {
     Route::get('/thi-sinh', [    
@@ -201,9 +176,6 @@ Route::group(['prefix'=>'tra-cuu'],function()
     ]);
 
 });
-
-
-
 
 //Test Chart
 Route::get('/api/data','ChartController@lineChart');
@@ -218,33 +190,3 @@ Route::get('api/notice','TestController@setScore');
 Route::any('{all?}', function() {
     return redirect('/');
 }) ->where('all', '.*');
-//>>>>>>> origin/master
-
-/*
-// Allow users with the permission "access" to see the page.
-Route::get('/test', [
-    'middleware' => ['auth', 'permissions.required'],
-    'permissions' => 'access',
-    'uses' => 'MyController@myAction'
-]);
-
-// Allow users with "access" OR "admin" to see the page.
-Route::get('/test', [
-    'middleware' => ['auth', 'permissions.required'],
-    'permissions' => ['access', 'admin'],
-    'uses' => 'MyController@myAction'
-]);
-
-// Allow users with "access" AND "admin" to see the page.
-Route::get('/test', [
-    'middleware' => ['auth', 'permissions.required'],
-    'permissions' => ['access', 'admin'],
-    'permissions_require_all' => true,
-    'uses' => 'MyController@myAction'
-]); 
-*/
-//
-
-//Route::get('test',function(){
-  // return view('admin.point.add'); 
-//});
