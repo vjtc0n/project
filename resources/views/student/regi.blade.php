@@ -14,22 +14,22 @@
               <th width="60%">{{ $student['ten'] }}</th>
             </tr>
             @foreach ($diems as $diem)
-              <tr>
-                <td>Môn 1</td>
-                <td>{{ $diem['mon1'] }}</td>
-              </tr>
-              <tr>
-                <td>Môn 2</td>
-                <td>{{ $diem['mon2'] }}</td>
-              </tr>
-              <tr>
-                <td>Môn 3</td>
-                <td>{{ $diem['mon3'] }}</td>
-              </tr>
-              <tr>
-                <td>Tổng</td>
-                <td>{{ $diem['mon1'] + $diem['mon2'] + $diem['mon3'] }}</td>
-              </tr>
+            <tr>
+              <td>Môn 1</td>
+              <td>{{ $diem['mon1'] }}</td>
+            </tr>
+            <tr>
+              <td>Môn 2</td>
+              <td>{{ $diem['mon2'] }}</td>
+            </tr>
+            <tr>
+              <td>Môn 3</td>
+              <td>{{ $diem['mon3'] }}</td>
+            </tr>
+            <tr>
+              <td>Tổng</td>
+              <td>{{ $diem['mon1'] + $diem['mon2'] + $diem['mon3'] }}</td>
+            </tr>
             @endforeach
           </table>
         </div>
@@ -56,7 +56,7 @@
   <div>
     <div class="listtruong panel panel-default">
       <div id="scroll_box">
-        <ul>
+        <ul id="dstruong">
           @foreach ($truongs as $truong)
             <li><a href="">{{ $truong['matr'] }}-{{ $truong['tentr'] }}</a></li>
           @endforeach
@@ -73,5 +73,28 @@
     </div>
   </div>
 </div>
+
+<script>
+$(document).ready(function() {
+  $("#MT").keyup(function() {
+    var keyword = $(this).val();
+    var url = "{{ route('tim-truong') }}";
+    var _token = "{{ csrf_token() }}"
+    $.ajax({
+      url: url,
+      type: 'POST',
+      cache: false,
+      data: {"_token": _token, "keyword": keyword},
+      success: function(data) {
+        var truongs = JSON.parse(data);
+        $("#dstruong").empty();
+        for (var i = 0; i < truongs.length; i++) {
+          $("#dstruong").append('<li><a href="">' + truongs[i].matr + ' - ' + truongs[i].tentr + '</a></li>');
+        }
+      }
+  });
+  });
+});
+</script>
 
 @stop

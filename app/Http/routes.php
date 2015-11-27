@@ -29,6 +29,7 @@ Route::get('tuyen-sinh',function(){
 Route::get('xem-dt',function(){
     return view('home/xemdt');
 });
+Route::post('tim-truong', ['as' => 'tim-truong', 'uses' => 'StudentController@postTimTruong']);
 
 Route::get('/login','UserController@getLogin');
 Route::post('/login','UserController@postLogin');
