@@ -32,7 +32,7 @@
           async: false,
     			
     			success:function(data){
-    				//console.log(data);
+    				console.log(data);
             //console.log(data.year[0]);
             //console.log(data.month[0]);
             
@@ -53,6 +53,7 @@
     		});
     		
     		
+
     		
 
 		     var options = {

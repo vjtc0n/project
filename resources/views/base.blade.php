@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+
 <html>
   <head>
 
@@ -99,16 +99,23 @@
      //  setInterval(function(){
      //  );
      // }, 3000);
-      $.ajax({
-        type: 'GET',
-        url: "{{URL::to('api/notice')}}",
-        async: false,
-        cache: false,
-        success: function(data){
-          console.log(data);
+      
+      setInterval(noticeCall, 3000);
+      function noticeCall(){
+        $.ajax({
+          url: "{{url('http://localhost/project/public/api/notification')}}",
+          type : "GET",
+          
+          
+          success:function(data){
+            console.log(data);
+            
+            
+          }
+        });
 
-        }
-       });
+      }
+      
     </script>
     <!-- Bootstrap core JavaScript
     ================================================== -->
@@ -120,6 +127,8 @@
     <!-- Scripts -->
   <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.4/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0/handlebars.js"></script>
+    
 
   </body>
 

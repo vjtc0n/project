@@ -12,15 +12,20 @@ use Hash;
 use App\User;
 use Auth;
 use Illuminate\Support\Facades\Redirect;
-class TestController extends Controller
+class TestNotificationController extends Controller
 {
-	public function setScore(Request $request){
-		$diem_khoa = 100;
-		$points = array('1' => 10,
-						'2' => 20,
-						'3' => 10
-						);
+	public function getNotice(){
 		
+		
+		$tongDiem = 21;
+		$scoreStudent = 20;
+		if (($tongDiem - $scoreStudent) >= 0.5) {
+
+			return response()->json(array(['notification'=>'Nguy hiem']));
+		}
+		else return response()->json(["notification"=>'Nguy hiem']);
+
+		return response()->json(array(['notification'=>'Nguy hiem']));
 		// for ($i=0; $i < count($points); $i++) { 
 		// 	if($diem_khoa - $points[i] >= 0.5){
 
@@ -30,6 +35,6 @@ class TestController extends Controller
 		// $student_id = $request->input('student_id');
 		//getScoreByStudent($student_id);
 
-		return response()->json(["notifcation"=>'Nguy hiem']) ;
+		
 	}
 }

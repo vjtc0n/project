@@ -35,7 +35,8 @@ class ChartController extends Controller
 		return response()->json(array('numberofstudent'=> $data,
 									  'day'=> $day,
 									  'year'=> $year,
-									  'month' => $month )) ;
+									  'month' => $month
+									   )) ;
 						       
 
 	}
@@ -52,6 +53,8 @@ class ChartController extends Controller
 		
 		return View::make('column-chart')->with('data', $data);
 	}
+
+
 
 }
 
