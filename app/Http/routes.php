@@ -142,32 +142,40 @@ Route::group(['prefix'=>'cluster-staff'],function()
 // Công việc của nhân viên trường
 Route::group(['prefix'=>'university-staff'],function()
 {
-    Route::get('/',function(){
-        return view('');
-    });
-
-    Route::post('/them-khoa', [
+    Route::get('/', [
         'middleware' => ['auth', 'permissions.required'],
         'permissions' => ['universitystaff'],
-        'uses' => 'UniversityStaffController@addMajor'
+        'uses' => 'UniversityStaffController@getListMajor'
     ]);
 
-    Route::post('/sua-khoa', [
+    Route::get('them-khoa', [
         'middleware' => ['auth', 'permissions.required'],
         'permissions' => ['universitystaff'],
-        'uses' => 'UniversityStaffController@editMajor'
+        'uses' => 'UniversityStaffController@getAddMajor'
     ]);
 
-    Route::get('/xoa-khoa', [
+    Route::post('them-khoa', [
+        'middleware' => ['auth', 'permissions.required'],
+        'permissions' => ['universitystaff'],
+        'uses' => 'UniversityStaffController@postAddMajor'
+    ]);
+
+    Route::get('sua-khoa', [
+        'middleware' => ['auth', 'permissions.required'],
+        'permissions' => ['universitystaff'],
+        'uses' => 'UniversityStaffController@getEditMajor'
+    ]);
+
+    Route::post('sua-khoa', [
+        'middleware' => ['auth', 'permissions.required'],
+        'permissions' => ['universitystaff'],
+        'uses' => 'UniversityStaffController@postEditMajor'
+    ]);
+
+    Route::get('xoa-khoa', [
         'middleware' => ['auth', 'permissions.required'],
         'permissions' => ['universitystaff'],
         'uses' => 'UniversityStaffController@deleteMajor'
-    ]);
-
-    Route::get('/diem', [
-        'middleware' => ['auth', 'permissions.required'],
-        'permissions' => ['universitystaff'],
-        'uses' => 'UniversityStaffController@setScore'
     ]);
 });
 

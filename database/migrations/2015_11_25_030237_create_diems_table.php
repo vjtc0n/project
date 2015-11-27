@@ -15,9 +15,9 @@ class CreateDiemsTable extends Migration
         Schema::create('diems', function (Blueprint $table) {
             $table->increments('id');
             $table->string('sbd');
-            $table->integer('mon1');
-            $table->integer('mon2');
-            $table->integer('mon3');
+            $table->float('mon1');
+            $table->float('mon2');
+            $table->float('mon3');
             $table->float('diemtong');
             $table->string('khoi');
             $table->integer('thisinh_id')->unsigned();

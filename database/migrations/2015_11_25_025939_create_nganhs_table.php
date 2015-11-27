@@ -16,7 +16,7 @@ class CreateNganhsTable extends Migration
             $table->increments('id');
             $table->string('manganh');
             $table->string('tennganh');
-            $table->integer('diemchuan');
+            $table->float('diemchuan');
             $table->integer('truong_id')->unsigned();
             $table->foreign('truong_id')->references('id')->on('truongs')->onDelete('cascade');
             $table->timestamps();

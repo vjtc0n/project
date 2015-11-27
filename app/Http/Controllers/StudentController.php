@@ -6,11 +6,10 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-use Auth;
+use Auth, Input, Response;;
 use App\ThiSinh;
 use App\Diem;
 use App\Truong;
-use Input, Response;
 
 class StudentController extends Controller
 {
