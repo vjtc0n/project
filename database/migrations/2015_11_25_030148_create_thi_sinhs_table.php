@@ -16,7 +16,7 @@ class CreateThiSinhsTable extends Migration
             $table->increments('id');
             $table->string('ten');
             $table->string('gioitinh');
-            $table->string('namsinh');
+            $table->integer('namsinh')->unsigned();
             $table->string('quequan');
             $table->string('khuvuc');
             $table->integer('user_id')->unsigned();
