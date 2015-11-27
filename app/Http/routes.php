@@ -124,22 +124,7 @@ Route::group(['prefix'=>'cluster-staff'],function()
 
 // Công việc của nhân viên trường
 
-Route::get('/university-register',function(){
-    return view('');
-});
-Route::post('/university-register', [
-    'uses' => 'UserController@checkCode'
-]);
 
-Route::get('/university-register/register', function () {
-    return view('');
-});
-
-Route::post('/university-register/register', [
-    'middleware' => ['auth', 'permissions.required'],
-    'permissions' => ['universitystaff'],
-    'uses' => 'UserController@addUniversity'
-]);
 
 
 Route::group(['prefix'=>'university-staff'],function()
@@ -189,13 +174,7 @@ Route::post('/rut-ho-so', [
 ]);
 
 // Xem điểm các thí sinh
-Route::group(['prefix'=>'search'],function()
-{
-    Route::get('/thi-sinh', [    
-    'uses' => 'SearchController@getStudentInformation'
-    ]);
 
-});
 
 
 
