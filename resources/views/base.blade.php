@@ -39,7 +39,7 @@
       <nav class="navbar navbar-default">
           <div class="container-fluid">
               <div class="navbar-header">
-                <a class="navbar-brand" href="#">PROJECT-III</a>
+                <a class="navbar-brand" href="home">Hệ Thống Tuyển Sinh Đại Học</a>
               </div>
             
               <div >

@@ -144,4 +144,8 @@ class UserController extends Controller
         return Redirect::to('/');
         // echo Hash::make('1234');
     }
+
+     public function getTrangChu() {
+        return redirect::to('/');
+    }
 }

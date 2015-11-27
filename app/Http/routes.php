@@ -25,7 +25,7 @@ Route::post('/', [
 ]);
 
 Route::get('tuyen-sinh', 'StudentController@getTuyenSinh');
-
+Route::get('home', 'UserController@getTrangChu');
 Route::get('xem-dt',function(){
     return view('home/xemdt');
 });
