@@ -24,7 +24,7 @@ Route::post('/', [
     'uses' => 'SearchController@getUniversityChart'
 ]);
 
-Route::get('tuyen-sinh', 'StudentController@getTuyenSinh')
+Route::get('tuyen-sinh', 'StudentController@getTuyenSinh');
 
 Route::get('xem-dt',function(){
     return view('home/xemdt');
