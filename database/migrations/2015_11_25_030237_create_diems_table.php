@@ -18,6 +18,7 @@ class CreateDiemsTable extends Migration
             $table->integer('mon1');
             $table->integer('mon2');
             $table->integer('mon3');
+            $table->float('diemtong');
             $table->string('khoi');
             $table->integer('thisinh_id')->unsigned();
             $table->foreign('thisinh_id')->references('id')->on('thi_sinhs')->onDelete('cascade');

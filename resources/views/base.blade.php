@@ -1,6 +1,7 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html>
   <head>
+
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -19,7 +20,7 @@
 
     <title>@section('title')
           Trang chủ
-      @show
+      @stop
     </title>
 
     <!-- Bootstrap core CSS -->
@@ -78,6 +79,15 @@
                           {{ Auth::user()->name }}
                 
                       </a></li>
+                    <li><a id = "noti_href" href="#">Thông Báo</a></li>
+
+                      <script>
+                      $("#noti_href").click(function(){
+                         $('#myModal').modal('show');
+                      });
+                      </script>
+
+
                     <li><a href="{{ url('/logout') }}">Logout</a></li>     
             @endif
             </div>
@@ -86,11 +96,27 @@
     </div>
     </div>
     <div class='content'>
-    @section('content')
+      @section('content')
 
-    @show
+      @show
     </div>
-		
+    @include('notification')
+
+    <script type="text/javascript">
+     //  setInterval(function(){
+     //  );
+     // }, 3000);
+      $.ajax({
+        type: 'GET',
+        url: "{{URL::to('api/notice')}}",
+        async: false,
+        cache: false,
+        success: function(data){
+          console.log(data);
+
+        }
+       });
+    </script>
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->

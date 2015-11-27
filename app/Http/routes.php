@@ -218,7 +218,7 @@ Route::get('/line-chart', function(){
 
 Route::get('/column-chart','ChartController@columnChart');
 
-
+Route::get('api/notice','TestController@setScore');
 
 Route::any('{all?}', function() {
     return redirect('/');
