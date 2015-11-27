@@ -82,16 +82,16 @@ Route::group(['prefix'=>'cluster-staff-manager'],function()
 
 });
 
-Route::group(['prefix'=>'admin'],function()
+Route::group(['prefix'=>'cluster-staff'],function()
 {
-    //Route::get('/',function(){
-        //return view('');
-    //});
+    Route::get('/',function(){
+    return view('');
+    });
     
-     Route::group(['prefix' => 'point'],function(){
-        //Route::get('list',['as' => 'admin.cate.list','uses' => 'CateController@getList']);
-        Route::get('add',['as' => 'admin.point.getAdd','uses' => 'PointController@getAdd']);
-        Route::post('add',['as' => 'admin.point.postAdd','uses' => 'PointController@postAdd']);
+     //Route::group(['prefix' => 'point'],function(){
+        //Route::get('list',['as' => 'admin.point.list','uses' => 'PointController@getList']);
+       // Route::get('add',['as' => 'admin.point.getAdd','uses' => 'PointController@getAdd']);
+       // Route::post('add',['as' => 'admin.point.postAdd','uses' => 'PointController@postAdd']);
         //Route::get('delete/{id}',['as' => 'admin.cate.getDelete','uses' => 'CateController@getDelete']);
         //Route::get('edit/{id}',['as' => 'admin.cate.getEdit','uses' => 'CateController@getEdit']);
         //Route::post('edit/{id}',['as' => 'admin.cate.postEdit','uses' => 'CateController@postEdit']);
@@ -208,11 +208,11 @@ Route::group(['prefix'=>'search'],function()
 });
 
 
-<<<<<<< HEAD
-//Route::any('{all?}', function() {
-   // return redirect('/');
-//}) ->where('all', '.*');
-=======
+//<<<<<<< HEAD
+Route::any('{all?}', function() {
+    return redirect('/');
+}) ->where('all', '.*');
+//=======
 
 Route::group(['prefix'=>'tra-cuu'],function()
 {
@@ -238,7 +238,7 @@ Route::get('/column-chart','TestChartController@columnChart');
 Route::any('{all?}', function() {
     return redirect('/');
 }) ->where('all', '.*');
->>>>>>> origin/master
+//>>>>>>> origin/master
 
 /*
 // Allow users with the permission "access" to see the page.

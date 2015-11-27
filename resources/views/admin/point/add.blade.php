@@ -3,41 +3,31 @@
 @section('action','Add')
 @section('content')
 <div class="col-lg-7" style="padding-bottom:120px">
+    @include('admin.blocks.error')
     <form action="{!! route('admin.point.getAdd') !!}" method="POST">
       <input type="hidden" name="_token" value="{!! csrf_token() !!}" />
+      
         <div class="form-group">
-            <label>Category Parent</label>
-            <select class="form-control">
-                <option value="0">Please Choose Category</option>
-                <option value="">Tin Tức</option>
-            </select>
+            <label>Số báo danh</label>
+            <input class="form-control" name="txtsbd" placeholder="Nhập số báo danh thí sinh" />
         </div>
         <div class="form-group">
-            <label>Category Name</label>
-            <input class="form-control" name="txtCateName" placeholder="Please Enter Category Name" />
+            <label>Điểm môn 1</label>
+            <input class="form-control" name="txtdmon1" placeholder="Nhập điểm môn 1" />
         </div>
         <div class="form-group">
-            <label>Category Order</label>
-            <input class="form-control" name="txtOrder" placeholder="Please Enter Category Order" />
+            <label>Điểm môn 2</label>
+            <input class="form-control" name="txtdmon2" placeholder="Nhập điểm môn 2" />
         </div>
         <div class="form-group">
-            <label>Category Keywords</label>
-            <input class="form-control" name="txtOrder" placeholder="Please Enter Category Keywords" />
+            <label>Điểm môn 3</label>
+            <input class="form-control" name="txtdmon3" placeholder="Nhập điểm môn 3" />
         </div>
         <div class="form-group">
-            <label>Category Description</label>
-            <textarea class="form-control" rows="3"></textarea>
+            <label>Khối thi</label>
+            <input class="form-control" name="txtkt" placeholder="Nhập khối thi" />
         </div>
-        <div class="form-group">
-            <label>Category Status</label>
-            <label class="radio-inline">
-                <input name="rdoStatus" value="1" checked="" type="radio">Visible
-            </label>
-            <label class="radio-inline">
-                <input name="rdoStatus" value="2" type="radio">Invisible
-            </label>
-        </div>
-        <button type="submit" class="btn btn-default">Category Add</button>
+        <button type="submit" class="btn btn-default">Thêm điểm</button>
         <button type="reset" class="btn btn-default">Reset</button>
     <form>
 </div>
