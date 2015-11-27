@@ -206,5 +206,7 @@ Route::get('/column-chart','ChartController@columnChart');
 Route::get('api/notice','TestController@setScore');
 
 Route::any('{all?}', function() {
-    return redirect('/');
+    return view('khong-tim-thay-trang');
+    //  echo("Không tìm thấy trang mà bạn yêu cầu");
+    // // return redirect('/');
 }) ->where('all', '.*');
