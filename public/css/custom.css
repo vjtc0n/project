@@ -1,7 +1,17 @@
-        #wrapper{margin: 20px 20px 40px 20px;}
-        #header {padding-left: 100px;padding-right: 100px;}
+        .header {padding-left: 100px;padding-right: 100px;margin: 20px 20px 40px 20px;}
         .content    {width:985px;min-height:500px;margin-left: 120px;}
-        .content-left {float:left;width:235px;min-height: 500px;padding-bottom: 5px;}
-        .content-right  {float:right;width:730px;min-height: 500px;background: #b200ff;}
+        .content-left {float:left;width:235px;padding-bottom: 5px;}
+        .content-right  {float:right;width:700px;}
         .regi {text-align: center;}
         .bttimkiem {margin-top: 10px;}
+        .abc{background: #434434}
+        .menutong{height: 55px;}
+        .menuleft{float:left;margin-top: 5px;}
+        .menuright{float:right;max-width:500px;}
+        .listtruong   {float:left;min-width:440px;overflow: auto;}
+        #scroll_box {height: 200px;max-width: 400px;}
+        #scroll_box ul li a {color:#000000;}
+        #scroll_box ul li a:hover{color:#0000FF;}
+        .sxtruong   {float:right;min-width:240px;}
+        .sxtruong h4{margin-top: 0px;}
+        

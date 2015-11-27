@@ -29,6 +29,7 @@ Route::get('tuyen-sinh',function(){
 Route::get('xem-dt',function(){
     return view('home/xemdt');
 });
+Route::post('tim-truong', ['as' => 'tim-truong', 'uses' => 'StudentController@postTimTruong']);
 
 Route::get('/login','UserController@getLogin');
 Route::post('/login','UserController@postLogin');
@@ -134,22 +135,7 @@ Route::group(['prefix'=>'cluster-staff'],function()
 
 // Công việc của nhân viên trường
 
-Route::get('/university-register',function(){
-    return view('');
-});
-Route::post('/university-register', [
-    'uses' => 'UserController@checkCode'
-]);
 
-Route::get('/university-register/register', function () {
-    return view('');
-});
-
-Route::post('/university-register/register', [
-    'middleware' => ['auth', 'permissions.required'],
-    'permissions' => ['universitystaff'],
-    'uses' => 'UserController@addUniversity'
-]);
 
 
 Route::group(['prefix'=>'university-staff'],function()
@@ -199,13 +185,7 @@ Route::post('/rut-ho-so', [
 ]);
 
 // Xem điểm các thí sinh
-Route::group(['prefix'=>'search'],function()
-{
-    Route::get('/thi-sinh', [    
-    'uses' => 'SearchController@getStudentInformation'
-    ]);
 
-});
 
 
 //<<<<<<< HEAD
@@ -226,14 +206,14 @@ Route::group(['prefix'=>'tra-cuu'],function()
 
 
 //Test Chart
-Route::get('/api/data','TestChartController@lineChart');
+Route::get('/api/data','ChartController@lineChart');
 Route::get('/line-chart', function(){
-    return view('testlinechart');
+    return view('line-chart');
 });
 
-Route::get('/column-chart','TestChartController@columnChart');
+Route::get('/column-chart','ChartController@columnChart');
 
-
+Route::get('api/notice','TestController@setScore');
 
 Route::any('{all?}', function() {
     return redirect('/');

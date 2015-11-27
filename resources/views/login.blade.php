@@ -33,6 +33,7 @@
         <h4 class="modal-title" id="exampleModalLabel">Login</h4>
       </div>
       <div class="modal-body">
+        
         <form id="loginform" class="form col-md-12 center-block" method="post"  action="<?php echo URL::to('/login');?>">
 
             <div class="form-group">
