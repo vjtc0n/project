@@ -211,7 +211,10 @@ Route::get('/line-chart', function(){
 
 Route::get('/column-chart','ChartController@columnChart');
 
-Route::get('api/notice','TestController@setScore');
+//Route::get('/{id}/{diemTong}','NotificationController@setScore');
+Route::get('/api/notification','TestNotificationController@getNotice');
+
+
 
 Route::any('{all?}', function() {
     return view('khong-tim-thay-trang');
