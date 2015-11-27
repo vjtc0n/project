@@ -16,6 +16,8 @@ class CreateTruongsTable extends Migration
             $table->increments('id');
             $table->string('matr');
             $table->string('tentr');
+            $table->integer('nhanvienquanly_user_id')->unsigned();
+            $table->foreign('nhanvienquanly_user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }

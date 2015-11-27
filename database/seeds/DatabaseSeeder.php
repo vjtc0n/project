@@ -46,9 +46,10 @@ class UsersTableSeeder extends Seeder {
             ['username' => 'admin', 'password' => Hash::make('admin'), 'name' => 'Admin', 'created_at' => $now, 'updated_at' => $now],
             ['username' => 'staffmanager', 'password' => Hash::make('123'), 'name' => 'staffmanager', 'created_at' => $now, 'updated_at' => $now],
             ['username' => 'cstaff', 'password' => Hash::make('123'), 'name' => 'cstaff', 'created_at' => $now, 'updated_at' => $now],
-            ['username' => 'ustaff', 'password' => Hash::make('123'), 'name' => 'ustaff', 'created_at' => $now, 'updated_at' => $now],
+            ['username' => 'bka', 'password' => Hash::make('123'), 'name' => 'bka', 'created_at' => $now, 'updated_at' => $now],
             ['username' => 'Nguyen Van A', 'password' => Hash::make('123'), 'name' => 'Nguyễn Văn A', 'created_at' => $now, 'updated_at' => $now],
-            ['username' => 'Nguyen Thi B', 'password' => Hash::make('123'), 'name' => 'Nguyễn Thị B', 'created_at' => $now, 'updated_at' => $now]
+            ['username' => 'Nguyen Thi B', 'password' => Hash::make('123'), 'name' => 'Nguyễn Thị B', 'created_at' => $now, 'updated_at' => $now],
+            ['username' => 'neu', 'password' => Hash::make('123'), 'name' => 'neu', 'created_at' => $now, 'updated_at' => $now]
         ]);
     }
 }
@@ -62,7 +63,8 @@ class PermissionUsersTableSeeder extends Seeder {
             ['permission_id' => 3, 'user_id' => 3, 'created_at' => $now, 'updated_at' => $now],
             ['permission_id' => 4, 'user_id' => 4, 'created_at' => $now, 'updated_at' => $now],
             ['permission_id' => 5, 'user_id' => 5, 'created_at' => $now, 'updated_at' => $now],
-            ['permission_id' => 5, 'user_id' => 6, 'created_at' => $now, 'updated_at' => $now]
+            ['permission_id' => 5, 'user_id' => 6, 'created_at' => $now, 'updated_at' => $now],
+            ['permission_id' => 4, 'user_id' => 7, 'created_at' => $now, 'updated_at' => $now]
         ]);
     }
 }
@@ -71,8 +73,8 @@ class TruongsTableSeeder extends Seeder {
     public function run() {
         $now = date('Y-m-d H:i:s');
         DB::table('truongs')->insert([
-            ['matr' => 'BKA', 'tentr' => 'Đại học Bách khoa Hà Nội', 'created_at' => $now, 'updated_at' => $now],
-            ['matr' => 'NEU', 'tentr' => 'Đại học Kinh tế Quốc dân', 'created_at' => $now, 'updated_at' => $now],
+            ['matr' => 'BKA', 'tentr' => 'Đại học Bách khoa Hà Nội', 'nhanvienquanly_user_id' => 4, 'created_at' => $now, 'updated_at' => $now],
+            ['matr' => 'NEU', 'tentr' => 'Đại học Kinh tế Quốc dân', 'nhanvienquanly_user_id' => 7, 'created_at' => $now, 'updated_at' => $now]
         ]);
     }
 }

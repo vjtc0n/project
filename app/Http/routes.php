@@ -63,10 +63,28 @@ Route::group(['prefix'=>'cluster-staff-manager'],function()
         return view('');
     });
 
+    Route::get('/taoTaiKhoanNhanVienCum', [
+        'middleware' => ['auth', 'permissions.required'],
+        'permissions' => ['clusterstaffmanager'],
+        'uses' => 'ClusterStaffManagerController@getTaoTaiKhoanNhanVienCum'
+    ]);
+
     Route::post('/taoTaiKhoanNhanVienCum', [
         'middleware' => ['auth', 'permissions.required'],
         'permissions' => ['clusterstaffmanager'],
-        'uses' => 'ClusterStaffManagerController@taoTaiKhoanNhanVienCum'
+        'uses' => 'ClusterStaffManagerController@postTaoTaiKhoanNhanVienCum'
+    ]);
+
+    Route::get('taoTaiKhoanNhanVienTruong', [
+        'middleware' => ['auth', 'permissions.required'],
+        'permissions' => ['clusterstaffmanager'],
+        'uses' => 'ClusterStaffManagerController@getTaoTaiKhoanNhanVienTruong'
+    ]);
+
+    Route::post('taoTaiKhoanNhanVienTruong', [
+        'middleware' => ['auth', 'permissions.required'],
+        'permissions' => ['clusterstaffmanager'],
+        'uses' => 'ClusterStaffManagerController@postTaoTaiKhoanNhanVienTruong'
     ]);
 
 });

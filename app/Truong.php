@@ -8,7 +8,7 @@ class Truong extends Model
 {
     protected $table = 'truongs';
     
-    protected $fillable = ['matr','tentr'];
+    protected $fillable = ['matr', 'tentr', 'nhanvienquanly_user_id'];
     
     public $timestamps = false;
     
