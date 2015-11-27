@@ -160,19 +160,22 @@ Route::group(['prefix'=>'university-staff'],function()
         'uses' => 'UniversityStaffController@postAddMajor'
     ]);
 
-    Route::get('sua-khoa', [
+    Route::get('sua-khoa/{id}', [
+        'as' => 'university-staff.sua-khoa',
         'middleware' => ['auth', 'permissions.required'],
         'permissions' => ['universitystaff'],
         'uses' => 'UniversityStaffController@getEditMajor'
     ]);
 
-    Route::post('sua-khoa', [
+    Route::post('sua-khoa/{id}', [
+        'as' => 'university-staff.sua-khoa',
         'middleware' => ['auth', 'permissions.required'],
         'permissions' => ['universitystaff'],
         'uses' => 'UniversityStaffController@postEditMajor'
     ]);
 
-    Route::get('xoa-khoa', [
+    Route::get('xoa-khoa/{id}', [
+        'as' => 'university-staff.xoa-khoa',
         'middleware' => ['auth', 'permissions.required'],
         'permissions' => ['universitystaff'],
         'uses' => 'UniversityStaffController@deleteMajor'
