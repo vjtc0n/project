@@ -21,11 +21,13 @@ Route::get('url/full',function () {
 
 // Xem bảng xếp hạng các trường DH theo điểm thấp nhất của các khoa trong trường
 Route::post('/', [    
-'uses' => 'SearchController@getUniversityChart'
+    'uses' => 'SearchController@getUniversityChart'
 ]);
-Route::get('tuyen-sinh',function(){
-    return view('home/regi');
-});
+Route::get('tuyen-sinh', [
+    'middleware' => ['auth', 'permissions.required'],
+    'permissions' => ['student'],
+    'uses' => 'StudentController@getTuyenSinh'
+]);
 Route::get('xem-dt',function(){
     return view('home/xemdt');
 });
