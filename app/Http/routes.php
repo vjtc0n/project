@@ -36,6 +36,21 @@ Route::get('/login','UserController@getLogin');
 Route::post('/login','UserController@postLogin');
 Route::get('/logout','UserController@getLogout');
 
+Route::get('/doi-mat-khau', [
+        'middleware' => ['auth', 'permissions.required'],
+        'permissions' => ['admin', 'clusterstaffmanager','clusterstaff','universitystaff','student'],
+        'uses' => 'UserController@getchangePasswd'
+    ]);
+
+
+Route::post('/doi-mat-khau', [
+        'middleware' => ['auth', 'permissions.required'],
+        'permissions' => ['admin', 'clusterstaffmanager','clusterstaff','universitystaff','student'],
+        'uses' => 'UserController@changePasswd'
+    ]);
+
+
+
 // Công việc của Admin
 Route::group(['prefix'=>'admin'],function()
 {

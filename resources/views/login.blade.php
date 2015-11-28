@@ -24,7 +24,7 @@
 <!--<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" >Login</button>-->
         
 
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
   <div class="modal-dialog" >
     <div class="modal-content">
       <div class="modal-header">
@@ -32,12 +32,13 @@
         </button>
         <h4 class="modal-title" id="exampleModalLabel">Login</h4>
       </div>
-      <div class="modal-body">
+      
         
         <form id="loginform" class="form col-md-12 center-block" method="post"  action="<?php echo URL::to('/login');?>">
-
-            <div class="form-group">
+          <br />
+            <div class="form-group @if ($errors->has('user_input')) has-error @endif">
               <input name="user_input" type="text" class="form-control input-lg" placeholder="Nhập tài khoản">
+              @if ($errors->has('user_input')) <p class="help-block">{{ $errors->first('user_input') }}</p> @endif
             </div>
             <div class="form-group">
                 <input name="password" type="password" class="form-control input-lg" placeholder="Password">
@@ -50,27 +51,28 @@
         <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
         </form>
-      </div>
+      
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
         
       </div>
     </div>
-  </div>
-</div>
-
-
-        <div>
+    <div>
               @if ($alert = Session::get('fail'))
                 <div class="alert alert-warning">
                   {{ $alert }}
                 </div>
               @endif
         </div>
+  </div>
+</div>
+
+
+        
 
 @endsection
 
-
+ 
 <!--	</body>
 
 	</html>

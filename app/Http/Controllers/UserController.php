@@ -12,6 +12,8 @@ use Hash;
 use App\User;
 use Auth;
 use Illuminate\Support\Facades\Redirect;
+use Session;
+
 
 class UserController extends Controller
 {
@@ -128,11 +130,15 @@ class UserController extends Controller
 				
             }
             else{
-                
-                return Redirect::back()->with('fail',"Tài khoản không chính xác. Đăng nhập thất bại");
+                Session::flash('fail','Sai tài khoản');
+                return Redirect::back()->withErrors($validator);
                
                 
             }
+        }
+        else{
+            Session::flash('fail','Sai tài khoản');
+            return Redirect::back()->withErrors($validator->errors());
         }
     }
 
@@ -147,5 +153,46 @@ class UserController extends Controller
 
      public function getTrangChu() {
         return redirect::to('/');
+    }
+
+
+    public function changePasswd(Request $request)
+    {
+        //dd($request->input_password);
+        //dd($request->re_password);
+        $validator = Validator::make($request->all(), [
+                    'input_password' => 'required|min:8',
+                    're_password' => 'required|same:input_password',
+                    
+                        ], [
+                    
+                    'input_password.required' => 'Vui lòng nhập mật khẩu mới',
+                    'input_password.min' => 'Độ dài tối thiểu của mật khẩu là 8',
+                    're_password.same:input_password' => 'Mật khẩu nhập lại không đúng, vui lòng kiểm tra lại mật khẩu',
+                    're_password.required' => 'Vui lòng nhập lại mật khẩu',
+                        ]
+        );
+
+        
+        if ($validator->passes()) {
+            
+            $user = Auth::user();
+            $user->password = Hash::make($request->input_password);
+            $user->save();
+            //dd(Auth::user()->password);
+            Auth::logout();
+            //Session::get('success_changePasswd','Cập nhật mật khẩu thành công');
+
+            return Redirect::to('/');
+        }
+        else {                       
+            // validation has failed, display error messages
+            return Redirect::back()
+                ->withErrors($validator->errors());
+            }
+    }
+
+    public function getchangePasswd(){
+        return View::make('changepassword');
     }
 }

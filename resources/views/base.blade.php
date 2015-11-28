@@ -13,8 +13,15 @@
     <!--[if lt IE 9]>
       <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
+    
     <script src="{{ url('public/js/jquery.min.js') }}"></script>
     <script src="{{ url('public/js/bootstrap.min.js') }}"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="{{ url('public/js/ie10-viewport-bug-workaround.js') }}"></script>
+    <!-- Scripts -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0/handlebars.js"></script>
 
     <title>@section('title')
           Trang chủ
@@ -63,7 +70,7 @@
             
                     <script>
                       $(function() {
-                        $('#exampleModal').modal('show');
+                        $('#loginModal').modal('show');
                       });
                     </script>
                     @else
@@ -72,29 +79,56 @@
                           {{ Auth::user()->name }}
                 
                       </a></li>
-                    <li><a id = "noti_href" href="#">Thông Báo</a></li>
+                    <!--<li><a id = "noti_href" href="#">Thông Báo</a></li>
 
                       <script>
                       $("#noti_href").click(function(){
                          $('#myModal').modal('show');
                       });
                       </script>
-
-
+                    -->
+                   
+                    <li><a href="{{ url('/doi-mat-khau') }}"><span class="glyphicon glyphicon-log-in"></span>&nbsp;Đổi Mật Khẩu</a></li>
+            
+                    <script>
+                      $(function() {
+                        $('#changePasswdModal').modal('show');
+                      });
+                      </script>
+                    
                     <li><a href="{{ url('/logout') }}">Logout</a></li>     
                     @endif
                   </ul>
               </div>
           </div>
       </nav>
+
     </div>
     <div class='content'>
       @section('content')
 
       @show
     </div>
-    @include('notification')
+    <div class='change'>
+      @section('change')
+      @show
+    </div>
+    
+    
+    
+    <!--@include('notification')
 
+    <div>
+           
+              @if ($alert = Session::get('success_changePasswd'))
+                <div class="alert alert-warning">
+                  {{ $alert }}
+                </div>
+              @endif
+        
+        
+
+        </div>
     <script type="text/javascript">
      //  setInterval(function(){
      //  );
@@ -115,19 +149,14 @@
         });
 
       }
-      
-    </script>
+
+    </script> -->
+
+    
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="{{ url('public/js/jquery.min.js') }}"></script>
-    <script src="{{ url('public/js/bootstrap.min.js') }}"></script>
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="{{ url('public/js/ie10-viewport-bug-workaround.js') }}"></script>
-    <!-- Scripts -->
-  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.4/js/bootstrap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0/handlebars.js"></script>
+    
     
 
   </body>
