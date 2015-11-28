@@ -3,6 +3,8 @@
 
 @section('content')
 
+    @include('errors')
+
     <table class="table table-striped table-bordered table-hover">
         <thead>
             <tr align="center">

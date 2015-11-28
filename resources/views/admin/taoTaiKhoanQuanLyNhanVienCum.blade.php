@@ -9,11 +9,11 @@
         <input type="hidden" name="_token" value="{!! csrf_token() !!}" />
         <div class="form-group">
             <label>Tài khoản</label>
-            <input type="text" class="form-control" name="txtUsername" placeholder="Please Enter Userame" autocomplete="off" />
+            <input type="text" class="form-control" name="txtUsername" placeholder="Please Enter Username" autocomplete="off" value="{{ old('txtUsername') }}" />
         </div>
         <div class="form-group">
             <label>Tên tài khoản</label>
-            <input type="text" class="form-control" name="txtName" placeholder="Please Enter Name" autocomplete="off" />
+            <input type="text" class="form-control" name="txtName" placeholder="Please Enter Name" autocomplete="off" value="{{ old('txtName') }}" />
         </div>
         <div class="form-group">
             <label>Mật khẩu</label>

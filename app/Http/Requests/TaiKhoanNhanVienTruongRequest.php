@@ -29,7 +29,7 @@ class TaiKhoanNhanVienTruongRequest extends Request
             'txtUsername' => 'required|unique:Users,username',
             'txtName' => 'required',
             'txtPassword' => 'required',
-            'txtRepassword' => 'required'
+            'txtRepassword' => 'required|same:txtPassword'
         ];
     }
 
@@ -41,7 +41,8 @@ class TaiKhoanNhanVienTruongRequest extends Request
             'txtUsername.unique' => 'Tài khoản này đã tồn tại!',
             'txtName.required' => 'Vui lòng điền đầy đủ thông tin!',
             'txtPassword.required' => 'Vui lòng điền đầy đủ thông tin!',
-            'txtRepassword.required' => 'Vui lòng điền đầy đủ thông tin'
+            'txtRepassword.required' => 'Vui lòng điền đầy đủ thông tin',
+            'txtRepassword.same' => 'Hai mật khẩu không trùng nhau!'
         ];
     }
 }

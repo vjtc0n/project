@@ -30,7 +30,7 @@ class UniversityStaffController extends Controller
         $nganh->diemchuan = $request->txtDiemChuan;
         $nganh->truong_id = Truong::where('nhanvienquanly_user_id', Auth::user()->id)->get()->first()->id;
         $nganh->save();
-        return redirect()->action('UniversityStaffController@getAddMajor')
+        return redirect()->action('UniversityStaffController@getListMajor')
                     ->with(['flash_level' => 'success', 'flash_message' => 'Thêm ngành thành công!']);
     }
 
