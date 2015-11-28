@@ -29,6 +29,7 @@ Route::get('xem-dt',function(){
     return view('home/xemdt');
 });
 
+Route::get('tra-diem', ['as' => 'tra-diem', 'uses' => 'UserController@getTraDiem']);
 Route::post('tim-truong', ['as' => 'tim-truong', 'uses' => 'StudentController@postTimTruong']);
 
 Route::get('/login','UserController@getLogin');

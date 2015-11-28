@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+// use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use View;
@@ -12,6 +12,11 @@ use Hash;
 use App\User;
 use Auth;
 use Illuminate\Support\Facades\Redirect;
+
+use App\Diem;
+use App\Thisinh;
+use Request;
+use DB;
 
 class UserController extends Controller
 {
@@ -147,5 +152,19 @@ class UserController extends Controller
 
      public function getTrangChu() {
         return redirect::to('/');
+    }
+
+    public function getTraDiem() {
+        if (Request::ajax()) {
+            $sbd = Request::get('txtSbd');
+            $diems = DB::table('diems')
+                        ->join('thi_sinhs', 'diems.thisinh_id', '=', 'thi_sinhs.id')
+                        ->select('ten', 'sbd', 'mon1', 'mon2', 'mon3', 'khoi')
+                        ->where('sbd', $sbd)
+                        ->get();
+            if (!empty($diems)) {
+                return json_encode($diems);
+            }
+        }
     }
 }
