@@ -24,12 +24,12 @@ Route::post('/', [
     'uses' => 'SearchController@getUniversityChart'
 ]);
 
-Route::get('tuyen-sinh', 'StudentController@getTuyenSinh');
 Route::get('home', 'UserController@getTrangChu');
 Route::get('xem-dt',function(){
     return view('home/xemdt');
 });
 
+Route::get('tra-diem', ['as' => 'tra-diem', 'uses' => 'UserController@getTraDiem']);
 Route::post('tim-truong', ['as' => 'tim-truong', 'uses' => 'StudentController@postTimTruong']);
 
 Route::get('/login','UserController@getLogin');
@@ -197,8 +197,13 @@ Route::group(['prefix'=>'university-staff'],function()
     ]);
 });
 
-
 // Công việc của thí sinh
+Route::get('tuyen-sinh', [
+    'middleware' => ['auth', 'permissions.required'],
+    'permissions' => ['student'],
+    'uses' => 'StudentController@getTuyenSinh'
+]);
+
 Route::post('/nop-ho-so', [
     'middleware' => ['auth', 'permissions.required'],
     'permissions' => ['student'],

@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use Redirect;
 
 class PermissionsRequiredMiddleware
 {
@@ -58,6 +59,6 @@ class PermissionsRequiredMiddleware
         }
 
     // If we reach this far, the user does not have the required permissions.
-        return abort(401);
+        return Redirect::back();
     }
 }
