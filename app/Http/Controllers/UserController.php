@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-// use Illuminate\Http\Request;
+use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use View;
@@ -14,10 +14,8 @@ use Auth;
 use Illuminate\Support\Facades\Redirect;
 use Session;
 
-
 use App\Diem;
 use App\Thisinh;
-use Request;
 use DB;
 
 class UserController extends Controller
@@ -160,8 +158,6 @@ class UserController extends Controller
         return redirect::to('/');
     }
 
-<<<<<<< HEAD
-
     public function changePasswd(Request $request)
     {
         //dd($request->input_password);
@@ -200,10 +196,11 @@ class UserController extends Controller
 
     public function getchangePasswd(){
         return View::make('changepassword');
-=======
+    }
+
     public function getTraDiem() {
-        if (Request::ajax()) {
-            $sbd = Request::get('txtSbd');
+        if (\Request::ajax()) {
+            $sbd = \Request::get('txtSbd');
             $diems = DB::table('diems')
                         ->join('thi_sinhs', 'diems.thisinh_id', '=', 'thi_sinhs.id')
                         ->select('ten', 'sbd', 'mon1', 'mon2', 'mon3', 'khoi')
@@ -213,6 +210,5 @@ class UserController extends Controller
                 return json_encode($diems);
             }
         }
->>>>>>> origin/master
     }
 }

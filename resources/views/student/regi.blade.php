@@ -38,9 +38,10 @@
       <div class="panel-body">    
         <div class="regi">
         <h4>VUI lÒNG ĐĂNG KÝ</h4>
-        <form class="form-inline" role="form">
-          <input type="text" class="form-control" id="MKDK" placeholder="Nhập mã khoa">    
-          <button type="submit" class="btn btn-default bttimkiem">Đăng ký</button>
+        <form class="form-inline" role="form" name="dang-ky">
+          <input type="hidden" name="_token" value="{{  csrf_token() }}" />
+          <input type="text" class="form-control" id="MKDK" name="makhoa" placeholder="Nhập mã khoa">
+          <button type="button" id="btn-dang-ky" class="btn btn-primary bttimkiem">Đăng ký</button>
         </form>
       </div>
       </div>            
@@ -58,8 +59,15 @@
       <div id="scroll_box">
         <ul id="dstruong">
           @foreach ($truongs as $truong)
-            <li><a href="">{{ $truong['matr'] }}-{{ $truong['tentr'] }}</a></li>
+            <li id="{{ $truong['id'] }}">{{ $truong['matr'] }} - {{ $truong['tentr'] }}</li>
           @endforeach
+        </ul>
+      </div>
+    </div>
+    <div class="listtruong panel panel-default">
+      <div id="scroll_box">
+        <ul id="dsnganh">
+          
         </ul>
       </div>
     </div>
@@ -89,12 +97,50 @@ $(document).ready(function() {
         var truongs = JSON.parse(data);
         $("#dstruong").empty();
         for (var i = 0; i < truongs.length; i++) {
-          $("#dstruong").append('<li><a href="">' + truongs[i].matr + ' - ' + truongs[i].tentr + '</a></li>');
+          $("#dstruong").append('<li id="' + truongs[i].id + '">' + truongs[i].matr + ' - ' + truongs[i].tentr + '</li>');
         }
       }
-  });
+    });
   });
 });
+
+$(document).ready(function(){
+    $("#dstruong li").click(function(){
+        var truong_id = $(this).attr("id");
+        var url = "{{ route('liet-ke-nganh') }}";
+        var _token = "{{ csrf_token() }}"
+        $.ajax({
+          url: url,
+          type: 'GET',
+          cache: false,
+          data: {"_token": _token, "truong_id": truong_id},
+          success: function(data) {
+            var nganhs = JSON.parse(data);
+            $("#dsnganh").empty();
+            for (var i = 0; i < nganhs.length; i++) {
+              $("#dsnganh").append('<li nganh_id="'+ nganhs[i].id +'">' + nganhs[i].manganh + ' - ' + nganhs[i].tennganh + '</li>');
+            }
+          }
+        });
+    });
+});
+
+$(document).ready(function() {
+  $( "#btn-dang-ky" ).click(function() {
+    var _token = $("form[name='dang-ky']").find("input[name='_token']").val();
+    var makhoa = $("form[name='dang-ky']").find("input[name='makhoa']").val();
+    $.ajax({
+      url: "{{ route('dang-ky') }}",
+      type : "GET",
+      cache: false,
+      data: {"_token": _token, "makhoa": makhoa},
+      success: function(data){
+        alert(data);
+      }
+    });
+  });
+});
+
 </script>
 
 @stop

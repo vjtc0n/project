@@ -31,6 +31,13 @@ Route::get('xem-dt',function(){
 
 Route::get('tra-diem', ['as' => 'tra-diem', 'uses' => 'UserController@getTraDiem']);
 Route::post('tim-truong', ['as' => 'tim-truong', 'uses' => 'StudentController@postTimTruong']);
+Route::get('liet-ke-nganh', ['as' => 'liet-ke-nganh', 'uses' => 'StudentController@getLietKeNganh']);
+Route::get('dang-ky', [
+        'as' => 'dang-ky',
+        'middleware' => ['auth', 'permissions.required'],
+        'permissions' => ['student'],
+        'uses' => 'StudentController@getDangKy'
+]);
 
 Route::get('/login','UserController@getLogin');
 Route::post('/login','UserController@postLogin');
