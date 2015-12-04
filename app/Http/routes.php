@@ -111,55 +111,58 @@ Route::group(['prefix'=>'cluster-staff-manager'],function()
 
 });
 
-Route::group(['prefix'=>'cluster-staff'],function()
+Route::group(['prefix'=>'cluster-staff',
+              'middleware' => ['auth', 'permissions.required'],'permissions' => ['clusterstaff']
+              ],function()
 {
-    Route::get('/',function(){
-    return view('');
+    
+    //'middleware' => ['auth', 'permissions.required'],
+    //'permissions' => ['clusterstaff'],
+    //Route::get('/',function(){
+    ///return view('');
+    //});
+    
+     Route::group(['prefix' => 'quan-ly-diem-thi'],function(){
+        
+        //Route::get('list',['as' => 'cluster-staff.quan-ly-diem-thi.listScore',
+                           //'uses' => 'ClusterStaffController@listScore']);
+        Route::get('add',['as' => 'cluster-staff.quan-ly-diem-thi.getScore',
+                          'uses' => 'ClusterStaffController@getScore']);
+        //Route::post('add',['as' => 'cluster-staff.quan-ly-diem-thi.postScore',
+                           //'uses' => 'ClusterStaffController@postScore']);
+        Route::get('delete/{id}',['as' => 'cluster-staff.quan-ly-diem-thi.getDeleteScore',
+                                  'uses' => 'ClusterStaffController@getDeleteScore']);
+        Route::get('edit/{id}',['as' => 'cluster-staff.quan-ly-diem-thi.getEditScore',
+                                'uses' => 'ClusterStaffController@getEditScore']);
+        Route::post('edit/{id}',['as' => 'cluster-staff.quan-ly-diem-thi.postEditScore',
+                                 'uses' => 'ClusterStaffController@postEditScore']);
+        
     });
     
-     //Route::group(['prefix' => 'point'],function(){
-        //Route::get('list',['as' => 'admin.point.list','uses' => 'PointController@getList']);
-       // Route::get('add',['as' => 'admin.point.getAdd','uses' => 'PointController@getAdd']);
-       // Route::post('add',['as' => 'admin.point.postAdd','uses' => 'PointController@postAdd']);
-        //Route::get('delete/{id}',['as' => 'admin.cate.getDelete','uses' => 'CateController@getDelete']);
-        //Route::get('edit/{id}',['as' => 'admin.cate.getEdit','uses' => 'CateController@getEdit']);
-        //Route::post('edit/{id}',['as' => 'admin.cate.postEdit','uses' => 'CateController@postEdit']);
+    Route::group(['prefix' => 'quan-ly-thong-tin-thi-sinh'],function(){
         
-    //});
+        Route::get('liststudentScore',['as' => 'cluster-staff.quan-ly-thong-tin-thi-sinh.listStudentScore',
+                           'uses' => 'ClusterStaffController@listStudentScore']);
+        
+        Route::get('list',['as' => 'cluster-staff.quan-ly-thong-tin-thi-sinh.listStudent',
+                           'uses' => 'ClusterStaffController@listStudent']);
+        Route::get('add',['as' => 'cluster-staff.quan-ly-thong-tin-thi-sinh.getStudent',
+                          'uses' => 'ClusterStaffController@getStudent']);
+        Route::post('add',['as' => 'cluster-staff.quan-ly-thong-tin-thi-sinh.postStudent',
+                           'uses' => 'ClusterStaffController@postStudent']);
+        Route::get('delete/{id}',['as' => 'cluster-staff.quan-ly-thong-tin-thi-sinh.getDeleteStudent',
+                                  'uses' => 'ClusterStaffController@getDeleteStudent']);
+        Route::get('edit/{id}',['as' => 'cluster-staff.quan-ly-thong-tin-thi-sinh.getEditStudent',
+                                'uses' => 'ClusterStaffController@getEditStudent']);
+        Route::post('edit/{id}',['as' => 'cluster-staff.quan-ly-thong-tin-thi-sinh.postEditStudent',
+                                 'uses' => 'ClusterStaffController@postEditStudent']);
+        
+    });
 
 
-    Route::post('/quan-ly-thong-tin-thi-sinh/add', [
-        //'middleware' => ['auth', 'permissions.required'],
-        'permissions' => ['clusterstaff'],
-        'uses' => 'ClusterStaffController@addStudent'
-    ]);
-
-    Route::post('/quan-ly-thong-tin-thi-sinh/edit', [
-        //'middleware' => ['auth', 'permissions.required'],
-        'permissions' => [ 'clusterstaff'],
-        'uses' => 'ClusterStaffController@editStudent'
-    ]);
-
-    Route::get('/quan-ly-thong-tin-thi-sinh/delete', [
-        //'middleware' => ['auth', 'permissions.required'],
-        'permissions' => [ 'clusterstaff'],
-        'uses' => 'ClusterStaffController@deleteStudent'
-    ]);
-
-    Route::post('/quan-ly-thong-tin-diem-thi/add', [
-        //'middleware' => ['auth', 'permissions.required'],
-        'permissions' => [ 'clusterstaff'],
-        'uses' => 'ClusterStaffController@addScore'
-    ]);
-
-    Route::post('/quan-ly-thong-tin-diem-thi/edit', [
-        //'middleware' => ['auth', 'permissions.required'],
-        'permissions' => [ 'clusterstaff'],
-        'uses' => 'ClusterStaffController@editScore'
-    ]);
+    
 
 });
-
 
 // Công việc của nhân viên trường
 Route::group(['prefix'=>'university-staff'],function()
