@@ -10,35 +10,35 @@
 
     <meta name="generator" content="Bootply" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <title>
+    	@section('title')
+          Trang chủ
+    	@stop
+    </title>
+    
     <!--[if lt IE 9]>
       <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
-    
-    <script src="{{ url('public/js/jquery.min.js') }}"></script>
-    <script src="{{ url('public/js/bootstrap.min.js') }}"></script>
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="{{ url('public/js/ie10-viewport-bug-workaround.js') }}"></script>
-    <!-- Scripts -->
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.4/js/bootstrap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0/handlebars.js"></script>
-
-    <title>@section('title')
-          Trang chủ
-      @stop
-    </title>
-
-    <!-- Bootstrap core CSS -->
-    <link href="{{ url('public/css/bootstrap.min.css') }}" rel="stylesheet">
-    <link href="{{ url('public/css/bootstrap-theme.min.css') }}" rel="stylesheet">
-    <!-- Custom styles for this template -->
-    <link href="{{ url('public/css/custom.css') }}" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
       <script src="{{ url('public/js/html5shiv.min.js') }}"></script>
       <script src="{{ url('public/js/respond.min.js') }}"></script>
     <![endif]-->
+    
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="{{ url('public/js/ie10-viewport-bug-workaround.js') }}"></script>
+    <!-- Scripts -->
+    <script src="{{ url('public/js/jquery.min.js') }}"></script>
+    <script src="{{ url('public/js/bootstrap.min.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0/handlebars.js"></script>
+
+    <!-- Bootstrap core CSS -->
+    <link href="{{ url('public/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ url('public/css/bootstrap-theme.min.css') }}" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="{{ url('public/css/custom.css') }}" rel="stylesheet">
   </head>
 
   <body>
