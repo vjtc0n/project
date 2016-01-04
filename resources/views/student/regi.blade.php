@@ -39,7 +39,7 @@
         <div class="regi">
         
         @if($checknganh == 0)
-        <h4>VUI lÒNG ĐĂNG KÝ</h4>
+        <h4>VUI LÒNG ĐĂNG KÝ</h4>
          <form class="form-inline" role="form" name="dang-ky">
           <input type="hidden" name="_token" value="{{  csrf_token() }}" />
           <input type="text" class="form-control" id="MKDK" name="makhoa" placeholder="Nhập mã khoa">
