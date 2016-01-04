@@ -111,8 +111,8 @@ Route::group(['prefix'=>'cluster-staff-manager'],function()
 
 });
 
-Route::group(['prefix'=>'cluster-staff',
-              'middleware' => ['auth', 'permissions.required'],'permissions' => ['clusterstaff']
+Route::group(['prefix'=>'cluster-staff'
+              //'middleware' => ['auth', 'permissions.required'],'permissions' => ['clusterstaff']
               ],function()
 {
     

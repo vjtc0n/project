@@ -83,15 +83,7 @@
                         <li>
                             <a href="#"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                         </li>
-                        <li>
-                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> StudentScore<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="{!! URL::route('cluster-staff.quan-ly-thong-tin-thi-sinh.listStudentScore')!!}">List Student Score</a>
-                                </li>
-                            </ul>
-                            <!-- /.nav-second-level -->
-                        </li>
+                        
                         <li>
                             <a href="#"><i class="fa fa-cube fa-fw"></i> Student<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
