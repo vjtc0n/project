@@ -220,10 +220,10 @@ Route::post('/nop-ho-so', [
     'uses' => 'StudentController@submit'
 ]);
 
-Route::post('/rut-ho-so', [
+Route::get('/rut-ho-so/{id}', [
     'middleware' => ['auth', 'permissions.required'],
     'permissions' => ['student'],
-    'uses' => 'StudentController@withdraw'
+    'uses' => 'StudentController@rutHS'
 ]);
 
 // Xem điểm các thí sinh
@@ -247,7 +247,6 @@ Route::get('/column-chart','ChartController@columnChart');
 //Route::get('/{id}/{diemTong}','NotificationController@setScore');
 Route::get('/api/notification','TestNotificationController@getNotice');
 
-Route::post('/rut-hs',['as'=>'rutHS','uses'=>'StudentController@rutHS']);
 
 Route::any('{all?}', function() {
     return view('khong-tim-thay-trang');

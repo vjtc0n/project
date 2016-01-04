@@ -43,6 +43,7 @@
          <form class="form-inline" role="form" name="dang-ky">
           <input type="hidden" name="_token" value="{{  csrf_token() }}" />
           <input type="text" class="form-control" id="MKDK" name="makhoa" placeholder="Nhập mã khoa">
+          <br/>
           <button type="button" id="btn-dang-ky" class="btn btn-primary bttimkiem">Đăng ký</button>
         </form>
         @else
@@ -57,11 +58,8 @@
               <td>&nbsp;&nbsp;&nbsp;&nbsp;{{$nganh->diemchuan}}</td>
             </tr>
         </table>
-          <form class="form-horizontal" role="form" method="POST" action="{{ url('/rut-hs')}}">
-            <input type="hidden" name="_token" value="{{  csrf_token() }}" />
-            <input type="hidden" name ="dangkiid" value ="{{$dangkis->id}}">
-            <button type="button"  class="btn btn-primary bttimkiem">Rút hồ sơ</button>
-          </form>
+            <button type="button"  class="btn btn-primary bttimkiem"><a href="{{ url('rut-ho-so/'.$dangkis->id)}}" onclick="return xacnhanxoa('Bạn có muốn rút hồ sơ?')">Rút hồ sơ</a>
+            </button>
         @endif  
       </div>
       </div>            

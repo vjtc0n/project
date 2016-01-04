@@ -68,10 +68,10 @@ class StudentController extends Controller
 
         return 'Đăng ký thành công!';
     }
-    public function rutHS(rutHSrequest $request)
+    public function rutHS($id)
     {
-        $dangkyid = $request->dangkiid;
-        echo $dangkyid;
-        return view('base');
+        $dangkycu = Dangki::find($id);
+        $dangkycu->delete();
+        return redirect()->back();
     }
 }
