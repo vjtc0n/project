@@ -8,6 +8,8 @@ class Permission extends Model {
 
     protected $table = 'permissions';
 
+    protected $fillable = array('name', 'slug');
+
     /**
      * A permission will have many users.
      */

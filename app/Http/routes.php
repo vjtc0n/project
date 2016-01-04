@@ -61,9 +61,9 @@ Route::post('/doi-mat-khau', [
 // Công việc của Admin
 Route::group(['prefix'=>'admin'],function()
 {
-    Route::get('/',function(){
-        return view('');
-    });
+    // Route::get('/',function(){
+    //     return view('');
+    // });
 
     Route::get('/taoTaiKhoanQuanLyNhanVienCum', [
         'middleware' => ['auth', 'permissions.required'],

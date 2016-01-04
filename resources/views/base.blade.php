@@ -39,6 +39,7 @@
     <link href="{{ url('public/css/bootstrap-theme.min.css') }}" rel="stylesheet">
     <!-- Custom styles for this template -->
     <link href="{{ url('public/css/custom.css') }}" rel="stylesheet">
+    <script src="{{ url('public/js/myscript.js') }}"></script>
   </head>
 
   <body>
@@ -54,15 +55,31 @@
                     <li><a href="xem-dt">Tra Cứu Điểm Thi</a></li>
                     <li @if(Request::url() === 'your url here')// code
                         @endif><a href="tuyen-sinh"> Tuyển Sinh Đại Học</a></li>
-                    <li class="dropdown">
-                      <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" href="#">Quản lý
-                        <span class="caret"></span></a>
-                      <ul class="dropdown-menu">
-                        <li><a href="#">Admin</a></li>
-                        <li><a href="#">Quản lý cụm</a></li>
-                        <li><a href="#">Quản lý trường</a></li> 
-                      </ul>
-                    </li>
+                    @if (!Auth::guest())
+                    <?php
+                      $pid = App\PermissionUser::where('user_id', Auth::user()->id)->get()->first()->permission_id;
+                      $slug = App\Permission::where('id', $pid)->get()->first()->slug;
+                    ?>
+                      @if ($slug != 'student')
+                        <li class="dropdown">
+                          <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" href="#">Quản lý
+                            <span class="caret"></span></a>
+                          <ul class="dropdown-menu">
+                            @if ($slug == 'admin')
+                              <li><a href="{{ url('/admin/taoTaiKhoanQuanLyNhanVienCum') }}">tạo tài khoản QLNV cụm</a></li>
+                            @elseif ($slug == 'clusterstaffmanager')
+                              <li><a href="{{ url('/cluster-staff-manager/taoTaiKhoanNhanVienCum') }}">tạo tài khoản NV cụm</a></li>
+                              <li><a href="{{ url('/cluster-staff-manager/taoTaiKhoanNhanVienTruong') }}">tạo tài khoản NV trường</a></li>
+                            @elseif ($slug == 'universitystaff')
+                              <li><a href="{{ url('/university-staff') }}">Danh sách</a></li>
+                              <li><a href="{{ url('/university-staff/them-khoa') }}">Thêm khoa</a></li>
+                            @else
+                              <li><a href="{{ url('/university-staff') }}">Danh sách</a></li>
+                            @endif
+                          </ul>
+                        </li>
+                      @endif
+                    @endif
                 </ul>
                  <ul class="nav navbar-nav navbar-right">
                   @if (Auth::guest())
@@ -106,7 +123,18 @@
     </div>
     <div class='content'>
       @section('content')
-
+        <div class="container-fluid lienhe">
+  <div class="row">
+    <div class="col-md-8 col-md-offset-2">
+      <div class="panel panel-default">
+        <div class="panel-heading">Quy chế tuyển sinh</div>
+        <div class="panel-body">
+                    
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
       @show
     </div>
     <div class='change'>
