@@ -12,14 +12,28 @@ use App\Diem;
 use App\Truong;
 use App\Nganh;
 use App\DangKi;
+use App\Http\Requests\rutHSrequest;
 
 class StudentController extends Controller
 {
     public function getTuyenSinh() {
         $student = ThiSinh::where('user_id', Auth::user()->id)->get()->first()->toArray();
-        $diems = Diem::where('thisinh_id', $student['id'])->get()->toArray();
+        $diems   = Diem::where('thisinh_id', $student['id'])->get()->toArray();
         $truongs = Truong::orderBy('tentr', 'ASC')->get()->toArray();
-        return view('student.regi', ['student' => $student, 'diems' => $diems, 'truongs' => $truongs]);
+        $thisinh = ThiSinh::where('user_id', Auth::user()->id)->get()->first();
+        $dangkis  = DangKi::where('thisinh_id', $thisinh->id)->get()->first();
+        if($dangkis ==null) 
+        {   
+            $checknganh = 0;
+            $nganh=0;
+        }
+        else
+        {
+        $nganh   = Nganh::select('id', 'manganh','tennganh','diemchuan')
+                ->where('id', $dangkis->nganh_id)->get()->first();
+        $checknganh = 1;
+        }
+        return view('student.regi', ['student' => $student, 'diems' => $diems, 'truongs' => $truongs, 'nganh' =>$nganh,'checknganh' =>$checknganh, 'dangkis'=>$dangkis]);
     }
 
     public function postTimTruong() {
@@ -42,7 +56,6 @@ class StudentController extends Controller
         $manganh = Input::get('makhoa');
         $nganh = Nganh::select('id')->where('manganh', $manganh)->get()->first();
         $thisinh = ThiSinh::where('user_id', Auth::user()->id)->get()->first();
-
         $dangkicus = DangKi::where('thisinh_id', $thisinh->id)->get();
         foreach($dangkicus as $dangkicu) {
             $dangkicu->delete();
@@ -54,5 +67,11 @@ class StudentController extends Controller
         $dangki->save();
 
         return 'Đăng ký thành công!';
+    }
+    public function rutHS(rutHSrequest $request)
+    {
+        $dangkyid = $request->dangkiid;
+        echo $dangkyid;
+        return view('base');
     }
 }

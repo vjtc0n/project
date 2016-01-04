@@ -8,41 +8,61 @@
       <div class="panel-heading">THÔNG TIN THÍ SINH</div>
       <div class="panel-body">
         <div>
-          <table>
+          <table class="infor">
             <tr>
-              <th width="40%">Thí sinh</th>
-              <th width="60%">{{ $student['ten'] }}</th>
+              <th width="34%">Thí sinh</th>
+              <th width="66%">&nbsp;&nbsp;{{ $student['ten'] }}</th>
             </tr>
             @foreach ($diems as $diem)
             <tr>
               <td>Môn 1</td>
-              <td>{{ $diem['mon1'] }}</td>
+              <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ $diem['mon1'] }}</td>
             </tr>
             <tr>
               <td>Môn 2</td>
-              <td>{{ $diem['mon2'] }}</td>
+              <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ $diem['mon2'] }}</td>
             </tr>
             <tr>
               <td>Môn 3</td>
-              <td>{{ $diem['mon3'] }}</td>
+              <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ $diem['mon3'] }}</td>
             </tr>
             <tr>
               <td>Tổng</td>
-              <td>{{ $diem['mon1'] + $diem['mon2'] + $diem['mon3'] }}</td>
+              <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ $diem['mon1'] + $diem['mon2'] + $diem['mon3'] }}</td>
             </tr>
             @endforeach
           </table>
         </div>
         </div>
       <div class=" panel-heading">THÔNG TIN ĐĂNG KÝ</div>
-      <div class="panel-body">    
+      <div class="panel-body">
         <div class="regi">
+        
+        @if($checknganh == 0)
         <h4>VUI lÒNG ĐĂNG KÝ</h4>
-        <form class="form-inline" role="form" name="dang-ky">
+         <form class="form-inline" role="form" name="dang-ky">
           <input type="hidden" name="_token" value="{{  csrf_token() }}" />
           <input type="text" class="form-control" id="MKDK" name="makhoa" placeholder="Nhập mã khoa">
           <button type="button" id="btn-dang-ky" class="btn btn-primary bttimkiem">Đăng ký</button>
         </form>
+        @else
+        <h4>BẠN ĐÃ ĐĂNG KÝ</h4>
+        <table class="infor">
+          <tr>
+            <th width="20%">Ngành</th>
+            <th width="80%">&nbsp;&nbsp;&nbsp;&nbsp;{{$nganh->tennganh}}</th>
+          </tr>
+          <tr>
+              <td>Điểm</td>
+              <td>&nbsp;&nbsp;&nbsp;&nbsp;{{$nganh->diemchuan}}</td>
+            </tr>
+        </table>
+          <form class="form-horizontal" role="form" method="POST" action="{{ url('/rut-hs')}}">
+            <input type="hidden" name="_token" value="{{  csrf_token() }}" />
+            <input type="hidden" name ="dangkiid" value ="{{$dangkis->id}}">
+            <button type="button"  class="btn btn-primary bttimkiem">Rút hồ sơ</button>
+          </form>
+        @endif  
       </div>
       </div>            
   </div>
@@ -55,6 +75,7 @@
     </div>
   </div>
   <div>
+  
     <div class="listtruong panel panel-default">
       <div id="scroll_box">
         <ul id="dstruong">
@@ -66,19 +87,12 @@
     </div>
     <div class="listtruong panel panel-default">
       <div id="scroll_box">
-        <ul id="dsnganh">
-          
+        <ul id="dsnganh">      
         </ul>
       </div>
     </div>
-    <div class="sxtruong">
-      <h4>Sắp xếp trường theo</h4>
-      <select class="form-control" id="sel2">
-        <option>-- Sắp xếp theo--</option>
-        <option>Tên trường theo thứ tự ABC</option>
-        <option>Mã trường theo thứ tự ABC</option>
-      </select>
-    </div>
+
+
   </div>
 </div>
 

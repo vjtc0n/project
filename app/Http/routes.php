@@ -247,7 +247,7 @@ Route::get('/column-chart','ChartController@columnChart');
 //Route::get('/{id}/{diemTong}','NotificationController@setScore');
 Route::get('/api/notification','TestNotificationController@getNotice');
 
-
+Route::post('/rut-hs',['as'=>'rutHS','uses'=>'StudentController@rutHS']);
 
 Route::any('{all?}', function() {
     return view('khong-tim-thay-trang');

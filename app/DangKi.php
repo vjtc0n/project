@@ -8,7 +8,7 @@ class DangKi extends Model
 {
     protected $table = 'dang_kis';
     
-    protected $fillable = ['thisinh_id','nganh_id'];
+    protected $fillable = ['id','thisinh_id','nganh_id'];
     
     public $timestamps = false;
     

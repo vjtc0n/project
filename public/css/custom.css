@@ -1,5 +1,5 @@
         .header {padding-left: 100px;padding-right: 100px;margin: 20px 20px 40px 20px;}
-        .content    {width:985px;min-height:500px;margin-left: 120px;}
+        .content    {min-height:560px;margin-left: 120px;margin-right: 120px;}
         .content-left {float:left;width:235px;padding-bottom: 5px;}
         .content-right  {float:right;width:700px;}
         .regi {text-align: center;}
@@ -8,10 +8,50 @@
         .menutong{height: 55px;}
         .menuleft{float:left;margin-top: 5px;}
         .menuright{float:right;max-width:500px;}
-        .listtruong   {float:left;min-width:440px;overflow: auto;}
+        .listtruong   {float:left;min-width:500px;overflow: auto;margin-left: 185px;}
+        .listtruong ul li {list-style:none;font-size: 15px;margin-left: -28px;}
         #scroll_box {height: 200px;max-width: 400px;}
         #scroll_box ul li a {color:#000000;}
         #scroll_box ul li a:hover{color:#0000FF;}
         .sxtruong   {float:right;min-width:240px;}
         .sxtruong h4{margin-top: 0px;}
+        .infor       {line-height: 22px;}
+        div.col-sm-9 {
+                float:right;
+                margin-top: -20px;
+                min-width: 750px;
+        }
+        div.col-sm-9 div {
+                margin-top:0px;
+                min-height: 400px;
+                font-size: 16px;
+        }
+        .head
+        {
+                font-size: 30px;
+                text-align: center;
+                font-weight: bold;
+                margin-bottom: 20px;
+                margin-top: 10px;
+        }
+        .headone
+        {
+                
+                margin-top: -10px;
+                font-size: 20px;
+                font-family: time news roman;
+                text-align: left;
+                font-weight: bold;
+
+        }
+        .contentin
+        {
+                margin-top: -5px;
+                margin-left: 25px;
+        }
+        #section1 {color: #000; margin-left: 125px;margin-right: 125px;}
+        #section2 {color: #000;}
+        .footer{text-align: center;margin-left: 125px;margin-right: 125px;}
+        .footer1{color: #898989;font-size: 16px;}
+
         
